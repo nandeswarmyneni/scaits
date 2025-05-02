@@ -32,8 +32,9 @@
     /* margin-bottom: 10px; */
 
 }
-.side-bottom-items{
+.side-bottom-items{ 
     padding: 15px;
+    margin-top: -10px;
 }
 .downicon{
     padding-top: 5px;
@@ -44,6 +45,7 @@
 .studenttext {
     color: rgba(52, 37, 255, 1);
 }
+
 
 .sidebarbutton {
     display: flex;
@@ -69,7 +71,14 @@
     cursor: pointer;
     transition: background-color 0.2s;
 }
+.dropdown-item-fee{
+    color: black;
+    padding-left: 35px;
+    cursor: pointer;
+}
 
 .dropdown-item:hover {
     color: black;
 }
+
+

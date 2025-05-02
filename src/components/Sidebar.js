@@ -1,16 +1,28 @@
 import logo from '../assets/logo.png'
 import './Sidebar.css'
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+
 
 function Sidebar() {
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
     const navigate = useNavigate();
+    const location = useLocation();
+    useEffect(() => {
+        if (location.pathname === '/screen1') {
+            setIsOpen(true);
+        } else {
+            setIsOpen(false);
+        }
+    }, [location]);
 
-    const handleFeeHeadsClick = () => {
-        navigate('/screen1');
-    };
+    const handleFeeHeadsClick = (e) => {
+        e.preventDefault(); 
+        navigate('/screen1'); 
+      };
+      
     return (
         <>
             <div className="sidebar-container">
@@ -35,12 +47,11 @@ function Sidebar() {
                                 <div className='dropdown-item'>City</div>
                                 <div className='dropdown-item'>Campus</div>
                                 <div className='dropdown-item'>Fee Payment Year</div>
-                                <div className='dropdown-item' onClick={handleFeeHeadsClick}>Fee Heads</div>
+                                <div className='dropdown-item-fee' onClick={handleFeeHeadsClick}>Fee Heads</div>
                                 <div className='dropdown-item'>Organization</div>
                                 <div className='dropdown-item'>Card Type</div>
                                 <div className='dropdown-item'>Stream</div>
                                 <div className='dropdown-item'>Program Name</div>
-                                <div className='dropdown-item'>Exam Program</div>
                                 <div className='dropdown-item'>Course Track</div>
                             </div>
                         )}
