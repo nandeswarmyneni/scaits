@@ -246,6 +246,174 @@ const FeeheadsBar = () => {
         category_id: "9",
         daysheet_head: "1"
     },
+    {
+        tran_head_id: "17",
+        head_name: "CDEPOSIT",
+        created_on: "21-05-2013",
+        created_by: "10876",
+        payment_head: "1",
+        scenaro_id: "21",
+        ob_scenaro_id: "20",
+        quick_payment_head: "1",
+        sub_head_code: "CDEPOSIT",
+        payment_data: "1",
+        category_id: "9",
+        daysheet_head: "1"
+    },
+    {
+        tran_head_id: "18",
+        head_name: "CDEPOSIT",
+        created_on: "21-05-2013",
+        created_by: "10876",
+        payment_head: "1",
+        scenaro_id: "21",
+        ob_scenaro_id: "20",
+        quick_payment_head: "1",
+        sub_head_code: "CDEPOSIT",
+        payment_data: "1",
+        category_id: "9",
+        daysheet_head: "1"
+    },
+    {
+        tran_head_id: "19",
+        head_name: "CDEPOSIT",
+        created_on: "21-05-2013",
+        created_by: "10876",
+        payment_head: "1",
+        scenaro_id: "21",
+        ob_scenaro_id: "20",
+        quick_payment_head: "1",
+        sub_head_code: "CDEPOSIT",
+        payment_data: "1",
+        category_id: "9",
+        daysheet_head: "1"
+    },
+    {
+        tran_head_id: "20",
+        head_name: "CDEPOSIT",
+        created_on: "21-05-2013",
+        created_by: "10876",
+        payment_head: "1",
+        scenaro_id: "21",
+        ob_scenaro_id: "20",
+        quick_payment_head: "1",
+        sub_head_code: "CDEPOSIT",
+        payment_data: "1",
+        category_id: "9",
+        daysheet_head: "1"
+    },
+    {
+        tran_head_id: "21",
+        head_name: "CDEPOSIT",
+        created_on: "21-05-2013",
+        created_by: "10876",
+        payment_head: "1",
+        scenaro_id: "21",
+        ob_scenaro_id: "20",
+        quick_payment_head: "1",
+        sub_head_code: "CDEPOSIT",
+        payment_data: "1",
+        category_id: "9",
+        daysheet_head: "1"
+    },
+    {
+        tran_head_id: "22",
+        head_name: "CDEPOSIT",
+        created_on: "21-05-2013",
+        created_by: "10876",
+        payment_head: "1",
+        scenaro_id: "21",
+        ob_scenaro_id: "20",
+        quick_payment_head: "1",
+        sub_head_code: "CDEPOSIT",
+        payment_data: "1",
+        category_id: "9",
+        daysheet_head: "1"
+    },
+    {
+        tran_head_id: "23",
+        head_name: "CDEPOSIT",
+        created_on: "21-05-2013",
+        created_by: "10876",
+        payment_head: "1",
+        scenaro_id: "21",
+        ob_scenaro_id: "20",
+        quick_payment_head: "1",
+        sub_head_code: "CDEPOSIT",
+        payment_data: "1",
+        category_id: "9",
+        daysheet_head: "1"
+    },
+    {
+        tran_head_id: "24",
+        head_name: "CDEPOSIT",
+        created_on: "21-05-2013",
+        created_by: "10876",
+        payment_head: "1",
+        scenaro_id: "21",
+        ob_scenaro_id: "20",
+        quick_payment_head: "1",
+        sub_head_code: "CDEPOSIT",
+        payment_data: "1",
+        category_id: "9",
+        daysheet_head: "1"
+    },
+    {
+        tran_head_id: "25",
+        head_name: "CDEPOSIT",
+        created_on: "21-05-2013",
+        created_by: "10876",
+        payment_head: "1",
+        scenaro_id: "21",
+        ob_scenaro_id: "20",
+        quick_payment_head: "1",
+        sub_head_code: "CDEPOSIT",
+        payment_data: "1",
+        category_id: "9",
+        daysheet_head: "1"
+    },
+    {
+        tran_head_id: "26",
+        head_name: "CDEPOSIT",
+        created_on: "21-05-2013",
+        created_by: "10876",
+        payment_head: "1",
+        scenaro_id: "21",
+        ob_scenaro_id: "20",
+        quick_payment_head: "1",
+        sub_head_code: "CDEPOSIT",
+        payment_data: "1",
+        category_id: "9",
+        daysheet_head: "1"
+    },
+    {
+        tran_head_id: "27",
+        head_name: "CDEPOSIT",
+        created_on: "21-05-2013",
+        created_by: "10876",
+        payment_head: "1",
+        scenaro_id: "21",
+        ob_scenaro_id: "20",
+        quick_payment_head: "1",
+        sub_head_code: "CDEPOSIT",
+        payment_data: "1",
+        category_id: "9",
+        daysheet_head: "1"
+    },
+    {
+        tran_head_id: "28",
+        head_name: "CDEPOSIT",
+        created_on: "21-05-2013",
+        created_by: "10876",
+        payment_head: "1",
+        scenaro_id: "21",
+        ob_scenaro_id: "20",
+        quick_payment_head: "1",
+        sub_head_code: "CDEPOSIT",
+        payment_data: "1",
+        category_id: "9",
+        daysheet_head: "1"
+    },
   
 
     ]);
@@ -346,9 +514,9 @@ const FeeheadsBar = () => {
 
             <div className="feeheads-table-container">
                 <table className="feeheads-table">
-                    <thead>
+                    <thead className="table-head">
                         <tr>
-                            <th><input type="checkbox" /></th>
+                        <th className="sticky-col-sticky-col-1"><input type="checkbox" /></th>
                             <th>TRAN HEAD ID</th>
                             <th>HEAD NAME</th>
                             <th>CREATED ON</th>
@@ -367,7 +535,7 @@ const FeeheadsBar = () => {
                     <tbody>
                         {tableData.map((row, index) => (
                             <tr key={index} className="table-row">
-                                <td><input type="checkbox" /></td>
+                                <td  className="sticky-col-sticky-col-1"><input type="checkbox"/></td>
                                 <td>{row.tran_head_id}</td>
                                 <td>{row.head_name}</td>
                                 <td>{row.created_on}</td>
@@ -426,13 +594,7 @@ const FeeheadsBar = () => {
                             {Object.keys(initialFormState).map((field, index) => (
                                 <label key={index}>
                                     {field.replace(/_/g, ' ').toUpperCase()}
-                                    <input
-                                        type="text"
-                                        name={field}
-                                        value={formData[field]}
-                                        onChange={handleChange}
-                                        placeholder={`Enter ${field.replace(/_/g, ' ').toUpperCase()}`}
-                                    />
+                                    <input type="text"name={field}value={formData[field]}onChange={handleChange}placeholder={`Enter ${field.replace(/_/g, ' ').toUpperCase()}`}/>
                                 </label>
                             ))}
                             <div className="form-buttons">
@@ -440,21 +602,9 @@ const FeeheadsBar = () => {
                                     <button type="button" onClick={handleCancel} className="cancel-btn">Cancel</button>
                                 )}
                                 {isEditMode && (
-                                    <button
-                                        type="button"
-                                        onClick={() => {
-                                            const updatedData = tableData.filter((_, idx) => idx !== editIndex);
-                                            setTableData(updatedData);
-                                            handleCancel();
-                                        }}
-                                        className="delete-btn"
-                                    >
-                                        Delete
-                                    </button>
+                                    <button type="button"onClick={() => {const updatedData = tableData.filter((_, idx) => idx !== editIndex);setTableData(updatedData);handleCancel();}}className="delete-btn">Delete</button>
                                 )}
-                                <button type="button" onClick={handleAddField} className="add-btn">
-                                    {isEditMode ? "Edit" : "Add New Field"}
-                                </button>
+                                <button type="button" onClick={handleAddField} className="add-btn">{isEditMode ? "Edit" : "Add New Field"}</button>
                             </div>
 
                         </form>

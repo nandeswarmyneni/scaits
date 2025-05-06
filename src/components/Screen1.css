@@ -89,8 +89,8 @@
   text-align: left;
   white-space: nowrap;
   border-bottom: 1px solid rgba(229, 233, 235, 1);
-  position: sticky;
-  z-index: 5;
+  /* position: sticky; */
+  /* z-index: 5; */
 }
 
 .feeheads-table th {
@@ -120,13 +120,17 @@
   top: 85px;
   left: 580px;
   width: 480px;
-  height: 550px;
+  height: 570px;
   background: rgba(255, 255, 255, 1);
   border-radius: 12px;
   padding: 24px;
   z-index: 20;
   /* overflow-y: auto; */
   gap: 32px;
+}
+.form-popup h3 {
+margin-bottom: 17px;
+font-weight: 500;
 }
 
 .feeheads-form {
@@ -231,3 +235,15 @@
   /* line-height: 1; */
   /* font-weight: bold; */
 }
+
+.sticky-col-sticky-col-1{
+  position: sticky;
+  left: 0px;
+  z-index: 9;
+  background-color: white;
+}
+.table-head{
+  font-size:12px;
+  font-weight:600;
+}
+
