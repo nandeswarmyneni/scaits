@@ -92,7 +92,73 @@
     color: black;
 }
 
+/* Add these media queries after your existing CSS */
 
+/* Tablet styles (768px and below) */
+@media (max-width: 768px) {
+    .sidebar-container {
+        width: 200px; /* Slightly narrower for tablets */
+        position: fixed;
+        z-index: 1000;
+        transform: translateX(-100%); /* Hide by default */
+        transition: transform 0.3s ease;
+    }
+    
+    .sidebar-container.open {
+        transform: translateX(0); /* Show when open */
+    }
+    
+    /* Add a hamburger menu trigger */
+    .sidebar-toggle {
+        display: block;
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 1100;
+        background: #F6F8F9;
+        padding: 10px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+}
 
+/* Mobile styles (480px and below) */
+@media (max-width: 480px) {
+    .sidebar-container {
+        width: 100%; /* Full width on mobile */
+        height: 100vh;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .logodiv {
+        padding: 15px;
+    }
+    
+    .sidebar-content {
+        margin: 5px;
+        padding: 5px;
+    }
+    
+    .sidebarbutton {
+        padding: 10px 8px;
+    }
+    
+    /* Make sure dropdown items are clearly visible */
+    .dropdown-item, .dropdown-item-fee {
+        padding-left: 45px;
+    }
+}
+
+/* You'll need to add this HTML for the toggle button (place it outside the sidebar) */
+/* <div class="sidebar-toggle">☰</div> */
+
+/* And this JavaScript to handle the toggle functionality */
+/*
+<script>
+document.querySelector('.sidebar-toggle').addEventListener('click', function() {
+    document.querySelector('.sidebar-container').classList.toggle('open');
+});
+</script>
+*/
  
 

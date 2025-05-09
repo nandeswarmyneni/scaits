@@ -247,3 +247,113 @@ font-weight: 500;
   font-weight:600;
 }
 
+/* Add these media queries after your existing CSS */
+
+/* Tablet styles (768px to 1024px) */
+@media (max-width: 1024px) {
+  .main-section {
+      margin-left: 0;
+      padding: 0 10px;
+  }
+  
+  .feeheads-container {
+      width: 100%;
+      height: auto;
+      padding: 15px;
+      flex-wrap: wrap;
+      gap: 15px;
+  }
+  
+  .title {
+      font-size: 28px;
+      width: 100%;
+  }
+  
+  .feeheads-table-container {
+      width: 100%;
+      max-height: none;
+      margin-top: 15px;
+  }
+  
+  .form-popup {
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      max-width: 480px;
+  }
+}
+
+/* Mobile styles (480px and below) */
+@media (max-width: 480px) {
+  .feeheads-container {
+      flex-direction: column;
+      align-items: flex-start;
+      height: auto;
+      padding: 10px;
+  }
+  
+  .title {
+      font-size: 24px;
+      margin-bottom: 10px;
+  }
+  
+  .button-group {
+      width: 100%;
+      flex-direction: column;
+      gap: 8px;
+  }
+  
+  .action-btn-filter,
+  .action-btn-export,
+  .action-btn-addnew {
+      width: 100%;
+  }
+  
+  .feeheads-table th,
+  .feeheads-table td {
+      padding: 6px 8px;
+      font-size: 12px;
+  }
+  
+  .form-popup {
+      top: 20px;
+      width: 90%;
+      height: auto;
+      max-height: 90vh;
+      overflow-y: auto;
+  }
+  
+  .feeheads-form {
+      grid-template-columns: 1fr;
+  }
+  
+  .form-buttons {
+      flex-direction: column;
+      gap: 10px;
+  }
+  
+  .add-btn,
+  .cancel-btn,
+  .delete-btn {
+      width: 100%;
+  }
+  
+  .sticky-col-sticky-col-1 {
+      position: static; /* Disable sticky on mobile */
+  }
+}
+
+/* Small mobile devices (360px and below) */
+@media (max-width: 360px) {
+  .title {
+      font-size: 20px;
+  }
+  
+  .feeheads-form {
+      gap: 10px;
+  }
+  
+  .form-popup {
+      padding: 15px;
+  }
+}
