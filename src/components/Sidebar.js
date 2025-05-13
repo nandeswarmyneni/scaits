@@ -9,8 +9,10 @@ function Sidebar() {
     const [selected, setSelected] = useState('Student');
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
+
     const navigate = useNavigate();
     const location = useLocation();
+   
 
     useEffect(() => {
         if (location.pathname === '/screen1') {
@@ -23,19 +25,21 @@ function Sidebar() {
     const handleFeeHeadsClick = () => {
         navigate('/screen1');
     };
- 
-  
-  
+
+
+
 
     return (
         <>
             <div className="sidebar-container" >
+
                 <div className="logodiv">
                     <img src={logo} alt='logo' />
                 </div>
-               
+              
                 <div className='sidebar-content'>
                     <div className='sidebaritems' onClick={() => toggle()}>
+                        
                         <div
                             className={`sidebarbutton ${selected === 'Student' ? 'selected' : ''}`}
                             onClick={() => setSelected('Student')}>

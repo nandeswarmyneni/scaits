@@ -13,7 +13,6 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
-  /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); */
   border-bottom: 1px solid rgba(229, 233, 235, 1);
 }
 
@@ -35,6 +34,10 @@
   color: rgba(37, 44, 50, 1);
   border: 1px solid rgba(221, 226, 228, 1);
   border-radius: 6px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .action-btn-export {
@@ -44,6 +47,9 @@
   color: rgba(37, 44, 50, 1);
   border: 1px solid rgba(221, 226, 228, 1);
   border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .action-btn-addnew {
@@ -55,18 +61,12 @@
   cursor: pointer;
   width: 149px;
   height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .feeheads-table-container {
-  /* position: absolute;
-    top: 140px;
-    left: 280px;
-    width: 2000px;
-    height: 680px;
-    overflow: auto;
-    background-color: white;
-    padding: 16px;
-    border-radius: 6px; */
   overflow-x: auto;
   margin-top: 20px;
   width: 1270px;
@@ -85,17 +85,13 @@
 .feeheads-table th,
 .feeheads-table td {
   padding: 8px 12px;
-  /* border: 1px solid #ccc; */
   text-align: left;
   white-space: nowrap;
   border-bottom: 1px solid rgba(229, 233, 235, 1);
-  /* position: sticky; */
-  /* z-index: 5; */
 }
 
 .feeheads-table th {
   z-index: 15;
-
 }
 
 .feeheads-table thead {
@@ -107,8 +103,8 @@
 
 .overlay {
   position: fixed;
-  top: 56;
-  left: 240;
+  top: 56px;
+  left: 240px;
   width: 1200%;
   height: 884%;
   background-color: black;
@@ -125,12 +121,12 @@
   border-radius: 12px;
   padding: 24px;
   z-index: 20;
-  /* overflow-y: auto; */
   gap: 32px;
 }
+
 .form-popup h3 {
-margin-bottom: 17px;
-font-weight: 500;
+  margin-bottom: 17px;
+  font-weight: 500;
 }
 
 .feeheads-form {
@@ -184,7 +180,6 @@ font-weight: 500;
   width: 318px;
   height: 44px;
   border-radius: 8px;
-
 }
 
 .close-btn {
@@ -205,7 +200,6 @@ font-weight: 500;
   width: 102px;
   height: 44px;
   border-radius: 8px;
-
 }
 
 .icon-btn {
@@ -215,11 +209,7 @@ font-weight: 500;
 .table-row {
   color: rgba(37, 44, 50, 1);
   font-weight: 400;
-  size: 14px;
-}
-
-.action-btn-filter {
-  position: relative;
+  font-size: 14px;
 }
 
 .notification-badge {
@@ -230,130 +220,73 @@ font-weight: 500;
   background-color: red;
   color: white;
   border-radius: 50%;
-  /* font-size: 10px; */
   padding: 2px 6px;
-  /* line-height: 1; */
-  /* font-weight: bold; */
 }
 
-.sticky-col-sticky-col-1{
+.sticky-col-sticky-col-1 {
   position: sticky;
   left: 0px;
   z-index: 9;
   background-color: white;
 }
-.table-head{
-  font-size:12px;
-  font-weight:600;
+
+.table-head {
+  font-size: 12px;
+  font-weight: 600;
 }
 
-/* Add these media queries after your existing CSS */
-
-/* Tablet styles (768px to 1024px) */
-@media (max-width: 1024px) {
-  .main-section {
-      margin-left: 0;
-      padding: 0 10px;
-  }
-  
-  .feeheads-container {
-      width: 100%;
-      height: auto;
-      padding: 15px;
-      flex-wrap: wrap;
-      gap: 15px;
-  }
-  
-  .title {
-      font-size: 28px;
-      width: 100%;
-  }
-  
-  .feeheads-table-container {
-      width: 100%;
-      max-height: none;
-      margin-top: 15px;
-  }
-  
-  .form-popup {
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80%;
-      max-width: 480px;
-  }
-}
-
-/* Mobile styles (480px and below) */
 @media (max-width: 480px) {
   .feeheads-container {
-      flex-direction: column;
-      align-items: flex-start;
-      height: auto;
-      padding: 10px;
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    justify-content: flex-start;
   }
-  
+
   .title {
-      font-size: 24px;
-      margin-bottom: 10px;
+    font-size: 24px;
   }
-  
+
   .button-group {
-      width: 100%;
-      flex-direction: column;
-      gap: 8px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #FFFFFF;
+   border-top: 1px solid #E5E9EB;
+    padding: 10px;
+    display: flex;
+    flex-direction: row; 
+    gap: 8px;
+    z-index: 10;
+    /* box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); */
   }
-  
+
   .action-btn-filter,
   .action-btn-export,
   .action-btn-addnew {
-      width: 100%;
+    flex: 1;
+    min-width: 0;
   }
-  
-  .feeheads-table th,
-  .feeheads-table td {
-      padding: 6px 8px;
-      font-size: 12px;
-  }
-  
-  .form-popup {
-      top: 20px;
-      width: 90%;
-      height: auto;
-      max-height: 90vh;
-      overflow-y: auto;
-  }
-  
-  .feeheads-form {
-      grid-template-columns: 1fr;
-  }
-  
-  .form-buttons {
-      flex-direction: column;
-      gap: 10px;
-  }
-  
-  .add-btn,
-  .cancel-btn,
-  .delete-btn {
-      width: 100%;
-  }
-  
-  .sticky-col-sticky-col-1 {
-      position: static; /* Disable sticky on mobile */
-  }
-}
 
-/* Small mobile devices (360px and below) */
-@media (max-width: 360px) {
-  .title {
-      font-size: 20px;
+  .feeheads-table-container {
+    width: 100%;
+    margin-top: 10px;
+    padding-bottom: 60px; /* Adjusted to account for shorter bottom bar height */
   }
-  
-  .feeheads-form {
-      gap: 10px;
-  }
-  
+
   .form-popup {
-      padding: 15px;
+    top: 10%;
+    left: 5%;
+    width: 90%;
+    height: auto;
+    padding: 16px;
+  }
+
+  .overlay {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 }

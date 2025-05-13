@@ -463,7 +463,7 @@ const FeeheadsBar = () => {
     return (
         <div className="main-section">
             <div className="feeheads-container">
-                <h1 className="title">Fee heads</h1>
+                <h1 className="title">Fee heads</h1>    
                 <div className="button-group">
 
                     <button className="action-btn-filter">
