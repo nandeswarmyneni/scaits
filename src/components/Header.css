@@ -1,4 +1,3 @@
-/* Default styles for larger screens */
 .header-container {
     display: flex;
     justify-content: space-between;
@@ -31,37 +30,37 @@
     pointer-events: none;
 }
 
-/* Responsive styles for mobile (480px or below) */
 @media (max-width: 480px) {
     .header-container {
-        width: 100%; /* Full width for mobile */
-        margin-top: 0px; /* Push header below sidebar logo if needed */
-        display: flex; /* Use flexbox to arrange children */
+        width: 100%; 
+        margin-top: 0px; 
+        display: flex; 
         height: 53px;
-        flex-direction: row; /* Side by side */
-        justify-content: space-between; /* Space out sidebar and icons */
-        align-items: center; /* Vertically align items */
+        flex-direction: row; 
+        justify-content: space-between; 
+        align-items: center;
         padding: 10px;
+        position: relative;
     }
 
     .sidebar {
-        flex: 0 0 auto; /* Sidebar takes its natural width */
+        flex: 0 0 auto;
     }
 
     .searchbar {
-        width: 50%; /* Adjust as needed */
+        width: 50%; 
         height: 53px;
-        margin-bottom: 10px; /* Space if needed */
+        margin-bottom: 10px; 
     }
 
     .searchbar input {
-        width: 100%; /* Full width input */
+        width: 100%; 
     }
 
     .header-icons {
-        flex: 0 0 auto; /* Icons take their natural width */
+        flex: 0 0 auto; 
         display: flex;
-        justify-content: flex-end; /* Align icons to the right */
-        align-items: center; /* Vertically center icons */
+        justify-content: flex-end; 
+        align-items: center;
     }
 }

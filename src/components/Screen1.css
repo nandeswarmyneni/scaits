@@ -55,7 +55,7 @@
 .action-btn-addnew {
   padding: 4px 8px;
   border: none;
-  background-color: #007bff;
+ background: #3425FF;
   color: white;
   border-radius: 6px;
   cursor: pointer;
@@ -175,7 +175,7 @@
 }
 
 .add-btn {
-  background-color: rgba(52, 37, 255, 1);
+ background: #3425FF;
   color: white;
   width: 318px;
   height: 44px;
@@ -245,6 +245,7 @@
 
   .title {
     font-size: 24px;
+    margin-top: -18px;
   }
 
   .button-group {
@@ -253,17 +254,17 @@
     left: 0;
     width: 100%;
     background-color: #FFFFFF;
-   border-top: 1px solid #E5E9EB;
+  border-top: 1px solid #E5E9EB;
     padding: 10px;
     display: flex;
     flex-direction: row; 
     gap: 8px;
     z-index: 10;
-    /* box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); */
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
   }
 
   .action-btn-filter,
-  .action-btn-export,
+  .action-btn-export, 
   .action-btn-addnew {
     flex: 1;
     min-width: 0;
@@ -272,7 +273,8 @@
   .feeheads-table-container {
     width: 100%;
     margin-top: 10px;
-    padding-bottom: 60px; /* Adjusted to account for shorter bottom bar height */
+    padding-bottom: 60px;
+    font-size: small;
   }
 
   .form-popup {
