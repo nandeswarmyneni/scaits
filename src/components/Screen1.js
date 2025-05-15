@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import './Screen1.css';
 
 const initialFormState = {
@@ -16,411 +16,436 @@ const initialFormState = {
     daysheet_head: '',
 };
 
-
 const FeeheadsBar = () => {
     const [showForm, setShowForm] = useState(false);
     const [formData, setFormData] = useState(initialFormState);
-    const [tableData, setTableData] = useState([{
-
-
-        tran_head_id: "1",
-        head_name: "AKASH BOOKS",
-        created_on: "21-05-2013",
-        created_by: "10876",
-        payment_head: "0",
-        scenaro_id: "4",
-        ob_scenaro_id: "1",
-        quick_payment_head: "1",
-        sub_head_code: "AKASH BOOKS",
-        payment_data: "1",
-        category_id: "22",
-        daysheet_head: "1"
-    },
-    {
-        tran_head_id: "2",
-        head_name: "APP FEE",
-        created_on: "21-05-2013",
-        created_by: "10876",
-        payment_head: "0",
-        scenaro_id: "9",
-        ob_scenaro_id: "5",
-        quick_payment_head: "0",
-        sub_head_code: "APP FEE",
-        payment_data: "1",
-        category_id: "",
-        daysheet_head: "0"
-    },
-    {
-        tran_head_id: "3",
-        head_name: "BUS PASS",
-        created_on: "21-05-2013",
-        created_by: "10876",
-        payment_head: "1",
-        scenaro_id: "",
-        ob_scenaro_id: "",
-        quick_payment_head: "1",
-        sub_head_code: "BP PAYMENT",
-        payment_data: "1",
-        category_id: "18",
-        daysheet_head: "1"
-    },
-    {
-        tran_head_id: "4",
-        head_name: "CDEPOSIT",
-        created_on: "21-05-2013",
-        created_by: "10876",
-        payment_head: "1",
-        scenaro_id: "21",
-        ob_scenaro_id: "20",
-        quick_payment_head: "1",
-        sub_head_code: "CDEPOSIT",
-        payment_data: "1",
-        category_id: "9",
-        daysheet_head: "1"
-    },
-    {
-        tran_head_id: "5",
-        head_name: "EXAM FEE",
-        created_on: "21-05-2013",
-        created_by: "10876",
-        payment_head: "1",
-        scenaro_id: "26",
-        ob_scenaro_id: "27",
-        quick_payment_head: "1",
-        sub_head_code: "EXAM FEE",
-        payment_data: "1",
-        category_id: "14",
-        daysheet_head: "1"
-    },
-    {
-        tran_head_id: "6",
-        head_name: "FEE",
-        created_on: "21-05-2013",
-        created_by: "10876",
-        payment_head: "1",
-        scenaro_id: "",
-        ob_scenaro_id: "",
-        quick_payment_head: "1",
-        sub_head_code: "PAYMENT",
-        payment_data: "1",
-        category_id: "4",
-        daysheet_head: "1"
-    },
-    {
-        tran_head_id: "7",
-        head_name: "AKASH BOOKS",
-        created_on: "21-05-2013",
-        created_by: "10876",
-        payment_head: "0",
-        scenaro_id: "4",
-        ob_scenaro_id: "1",
-        quick_payment_head: "1",
-        sub_head_code: "AKASH BOOKS",
-        payment_data: "1",
-        category_id: "22",
-        daysheet_head: "1"
-    },
-    {
-        tran_head_id: "8",
-        head_name: "APP FEE",
-        created_on: "21-05-2013",
-        created_by: "10876",
-        payment_head: "0",
-        scenaro_id: "9",
-        ob_scenaro_id: "5",
-        quick_payment_head: "0",
-        sub_head_code: "APP FEE",
-        payment_data: "1",
-        category_id: "",
-        daysheet_head: "0"
-    },
-    {
-        tran_head_id: "9",
-        head_name: "BUS PASS",
-        created_on: "21-05-2013",
-        created_by: "10876",
-        payment_head: "1",
-        scenaro_id: "",
-        ob_scenaro_id: "",
-        quick_payment_head: "1",
-        sub_head_code: "BP PAYMENT",
-        payment_data: "1",
-        category_id: "18",
-        daysheet_head: "1"
-    },
-    {
-        tran_head_id: "10",
-        head_name: "CDEPOSIT",
-        created_on: "21-05-2013",
-        created_by: "10876",
-        payment_head: "1",
-        scenaro_id: "21",
-        ob_scenaro_id: "20",
-        quick_payment_head: "1",
-        sub_head_code: "CDEPOSIT",
-        payment_data: "1",
-        category_id: "9",
-        daysheet_head: "1"
-    },
-    {
-        tran_head_id: "11",
-        head_name: "CDEPOSIT",
-        created_on: "21-05-2013",
-        created_by: "10876",
-        payment_head: "1",
-        scenaro_id: "21",
-        ob_scenaro_id: "20",
-        quick_payment_head: "1",
-        sub_head_code: "CDEPOSIT",
-        payment_data: "1",
-        category_id: "9",
-        daysheet_head: "1"
-    },
-    {
-        tran_head_id: "12",
-        head_name: "CDEPOSIT",
-        created_on: "21-05-2013",
-        created_by: "10876",
-        payment_head: "1",
-        scenaro_id: "21",
-        ob_scenaro_id: "20",
-        quick_payment_head: "1",
-        sub_head_code: "CDEPOSIT",
-        payment_data: "1",
-        category_id: "9",
-        daysheet_head: "1"
-    },
-    {
-        tran_head_id: "13",
-        head_name: "CDEPOSIT",
-        created_on: "21-05-2013",
-        created_by: "10876",
-        payment_head: "1",
-        scenaro_id: "21",
-        ob_scenaro_id: "20",
-        quick_payment_head: "1",
-        sub_head_code: "CDEPOSIT",
-        payment_data: "1",
-        category_id: "9",
-        daysheet_head: "1"
-    },
-    {
-        tran_head_id: "14",
-        head_name: "CDEPOSIT",
-        created_on: "21-05-2013",
-        created_by: "10876",
-        payment_head: "1",
-        scenaro_id: "21",
-        ob_scenaro_id: "20",
-        quick_payment_head: "1",
-        sub_head_code: "CDEPOSIT",
-        payment_data: "1",
-        category_id: "9",
-        daysheet_head: "1"
-    },
-    {
-        tran_head_id: "15",
-        head_name: "CDEPOSIT",
-        created_on: "21-05-2013",
-        created_by: "10876",
-        payment_head: "1",
-        scenaro_id: "21",
-        ob_scenaro_id: "20",
-        quick_payment_head: "1",
-        sub_head_code: "CDEPOSIT",
-        payment_data: "1",
-        category_id: "9",
-        daysheet_head: "1"
-    },
-    {
-        tran_head_id: "16",
-        head_name: "CDEPOSIT",
-        created_on: "21-05-2013",
-        created_by: "10876",
-        payment_head: "1",
-        scenaro_id: "21",
-        ob_scenaro_id: "20",
-        quick_payment_head: "1",
-        sub_head_code: "CDEPOSIT",
-        payment_data: "1",
-        category_id: "9",
-        daysheet_head: "1"
-    },
-    {
-        tran_head_id: "17",
-        head_name: "CDEPOSIT",
-        created_on: "21-05-2013",
-        created_by: "10876",
-        payment_head: "1",
-        scenaro_id: "21",
-        ob_scenaro_id: "20",
-        quick_payment_head: "1",
-        sub_head_code: "CDEPOSIT",
-        payment_data: "1",
-        category_id: "9",
-        daysheet_head: "1"
-    },
-    {
-        tran_head_id: "18",
-        head_name: "CDEPOSIT",
-        created_on: "21-05-2013",
-        created_by: "10876",
-        payment_head: "1",
-        scenaro_id: "21",
-        ob_scenaro_id: "20",
-        quick_payment_head: "1",
-        sub_head_code: "CDEPOSIT",
-        payment_data: "1",
-        category_id: "9",
-        daysheet_head: "1"
-    },
-    {
-        tran_head_id: "19",
-        head_name: "CDEPOSIT",
-        created_on: "21-05-2013",
-        created_by: "10876",
-        payment_head: "1",
-        scenaro_id: "21",
-        ob_scenaro_id: "20",
-        quick_payment_head: "1",
-        sub_head_code: "CDEPOSIT",
-        payment_data: "1",
-        category_id: "9",
-        daysheet_head: "1"
-    },
-    {
-        tran_head_id: "20",
-        head_name: "CDEPOSIT",
-        created_on: "21-05-2013",
-        created_by: "10876",
-        payment_head: "1",
-        scenaro_id: "21",
-        ob_scenaro_id: "20",
-        quick_payment_head: "1",
-        sub_head_code: "CDEPOSIT",
-        payment_data: "1",
-        category_id: "9",
-        daysheet_head: "1"
-    },
-    {
-        tran_head_id: "21",
-        head_name: "CDEPOSIT",
-        created_on: "21-05-2013",
-        created_by: "10876",
-        payment_head: "1",
-        scenaro_id: "21",
-        ob_scenaro_id: "20",
-        quick_payment_head: "1",
-        sub_head_code: "CDEPOSIT",
-        payment_data: "1",
-        category_id: "9",
-        daysheet_head: "1"
-    },
-    {
-        tran_head_id: "22",
-        head_name: "CDEPOSIT",
-        created_on: "21-05-2013",
-        created_by: "10876",
-        payment_head: "1",
-        scenaro_id: "21",
-        ob_scenaro_id: "20",
-        quick_payment_head: "1",
-        sub_head_code: "CDEPOSIT",
-        payment_data: "1",
-        category_id: "9",
-        daysheet_head: "1"
-    },
-    {
-        tran_head_id: "23",
-        head_name: "CDEPOSIT",
-        created_on: "21-05-2013",
-        created_by: "10876",
-        payment_head: "1",
-        scenaro_id: "21",
-        ob_scenaro_id: "20",
-        quick_payment_head: "1",
-        sub_head_code: "CDEPOSIT",
-        payment_data: "1",
-        category_id: "9",
-        daysheet_head: "1"
-    },
-    {
-        tran_head_id: "24",
-        head_name: "CDEPOSIT",
-        created_on: "21-05-2013",
-        created_by: "10876",
-        payment_head: "1",
-        scenaro_id: "21",
-        ob_scenaro_id: "20",
-        quick_payment_head: "1",
-        sub_head_code: "CDEPOSIT",
-        payment_data: "1",
-        category_id: "9",
-        daysheet_head: "1"
-    },
-    {
-        tran_head_id: "25",
-        head_name: "CDEPOSIT",
-        created_on: "21-05-2013",
-        created_by: "10876",
-        payment_head: "1",
-        scenaro_id: "21",
-        ob_scenaro_id: "20",
-        quick_payment_head: "1",
-        sub_head_code: "CDEPOSIT",
-        payment_data: "1",
-        category_id: "9",
-        daysheet_head: "1"
-    },
-    {
-        tran_head_id: "26",
-        head_name: "CDEPOSIT",
-        created_on: "21-05-2013",
-        created_by: "10876",
-        payment_head: "1",
-        scenaro_id: "21",
-        ob_scenaro_id: "20",
-        quick_payment_head: "1",
-        sub_head_code: "CDEPOSIT",
-        payment_data: "1",
-        category_id: "9",
-        daysheet_head: "1"
-    },
-    {
-        tran_head_id: "27",
-        head_name: "CDEPOSIT",
-        created_on: "21-05-2013",
-        created_by: "10876",
-        payment_head: "1",
-        scenaro_id: "21",
-        ob_scenaro_id: "20",
-        quick_payment_head: "1",
-        sub_head_code: "CDEPOSIT",
-        payment_data: "1",
-        category_id: "9",
-        daysheet_head: "1"
-    },
-    {
-        tran_head_id: "28",
-        head_name: "CDEPOSIT",
-        created_on: "21-05-2013",
-        created_by: "10876",
-        payment_head: "1",
-        scenaro_id: "21",
-        ob_scenaro_id: "20",
-        quick_payment_head: "1",
-        sub_head_code: "CDEPOSIT",
-        payment_data: "1",
-        category_id: "9",
-        daysheet_head: "1"
-    },
-  
+    const [tableData, setTableData] = useState([
+        {
+            tran_head_id: "1",
+            head_name: "AKASH BOOKS",
+            created_on: "21-05-2013",
+            created_by: "10876",
+            payment_head: "0",
+            scenaro_id: "4",
+            ob_scenaro_id: "1",
+            quick_payment_head: "1",
+            sub_head_code: "AKASH BOOKS",
+            payment_data: "1",
+            category_id: "22",
+            daysheet_head: "1"
+        },
+        {
+            tran_head_id: "2",
+            head_name: "APP FEE",
+            created_on: "21-05-2013",
+            created_by: "10876",
+            payment_head: "0",
+            scenaro_id: "9",
+            ob_scenaro_id: "5",
+            quick_payment_head: "0",
+            sub_head_code: "APP FEE",
+            payment_data: "1",
+            category_id: "",
+            daysheet_head: "0"
+        },
+        {
+            tran_head_id: "3",
+            head_name: "BUS PASS",
+            created_on: "21-05-2013",
+            created_by: "10876",
+            payment_head: "1",
+            scenaro_id: "",
+            ob_scenaro_id: "",
+            quick_payment_head: "1",
+            sub_head_code: "BP PAYMENT",
+            payment_data: "1",
+            category_id: "18",
+            daysheet_head: "1"
+        },
+        {
+            tran_head_id: "4",
+            head_name: "CDEPOSIT",
+            created_on: "21-05-2013",
+            created_by: "10876",
+            payment_head: "1",
+            scenaro_id: "21",
+            ob_scenaro_id: "20",
+            quick_payment_head: "1",
+            sub_head_code: "CDEPOSIT",
+            payment_data: "1",
+            category_id: "9",
+            daysheet_head: "1"
+        },
+        {
+            tran_head_id: "5",
+            head_name: "EXAM FEE",
+            created_on: "21-05-2013",
+            created_by: "10876",
+            payment_head: "1",
+            scenaro_id: "26",
+            ob_scenaro_id: "27",
+            quick_payment_head: "1",
+            sub_head_code: "EXAM FEE",
+            payment_data: "1",
+            category_id: "14",
+            daysheet_head: "1"
+        },
+        {
+            tran_head_id: "6",
+            head_name: "FEE",
+            created_on: "21-05-2013",
+            created_by: "10876",
+            payment_head: "1",
+            scenaro_id: "",
+            ob_scenaro_id: "",
+            quick_payment_head: "1",
+            sub_head_code: "PAYMENT",
+            payment_data: "1",
+            category_id: "4",
+            daysheet_head: "1"
+        },
+        {
+            tran_head_id: "7",
+            head_name: "AKASH BOOKS",
+            created_on: "21-05-2013",
+            created_by: "10876",
+            payment_head: "0",
+            scenaro_id: "4",
+            ob_scenaro_id: "1",
+            quick_payment_head: "1",
+            sub_head_code: "AKASH BOOKS",
+            payment_data: "1",
+            category_id: "22",
+            daysheet_head: "1"
+        },
+        {
+            tran_head_id: "8",
+            head_name: "APP FEE",
+            created_on: "21-05-2013",
+            created_by: "10876",
+            payment_head: "0",
+            scenaro_id: "9",
+            ob_scenaro_id: "5",
+            quick_payment_head: "0",
+            sub_head_code: "APP FEE",
+            payment_data: "1",
+            category_id: "",
+            daysheet_head: "0"
+        },
+        {
+            tran_head_id: "9",
+            head_name: "BUS PASS",
+            created_on: "21-05-2013",
+            created_by: "10876",
+            payment_head: "1",
+            scenaro_id: "",
+            ob_scenaro_id: "",
+            quick_payment_head: "1",
+            sub_head_code: "BP PAYMENT",
+            payment_data: "1",
+            category_id: "18",
+            daysheet_head: "1"
+        },
+        {
+            tran_head_id: "10",
+            head_name: "CDEPOSIT",
+            created_on: "21-05-2013",
+            created_by: "10876",
+            payment_head: "1",
+            scenaro_id: "21",
+            ob_scenaro_id: "20",
+            quick_payment_head: "1",
+            sub_head_code: "CDEPOSIT",
+            payment_data: "1",
+            category_id: "9",
+            daysheet_head: "1"
+        },
+        {
+            tran_head_id: "11",
+            head_name: "CDEPOSIT",
+            created_on: "21-05-2013",
+            created_by: "10876",
+            payment_head: "1",
+            scenaro_id: "21",
+            ob_scenaro_id: "20",
+            quick_payment_head: "1",
+            sub_head_code: "CDEPOSIT",
+            payment_data: "1",
+            category_id: "9",
+            daysheet_head: "1"
+        },
+        {
+            tran_head_id: "12",
+            head_name: "CDEPOSIT",
+            created_on: "21-05-2013",
+            created_by: "10876",
+            payment_head: "1",
+            scenaro_id: "21",
+            ob_scenaro_id: "20",
+            quick_payment_head: "1",
+            sub_head_code: "CDEPOSIT",
+            payment_data: "1",
+            category_id: "9",
+            daysheet_head: "1"
+        },
+        {
+            tran_head_id: "13",
+            head_name: "CDEPOSIT",
+            created_on: "21-05-2013",
+            created_by: "10876",
+            payment_head: "1",
+            scenaro_id: "21",
+            ob_scenaro_id: "20",
+            quick_payment_head: "1",
+            sub_head_code: "CDEPOSIT",
+            payment_data: "1",
+            category_id: "9",
+            daysheet_head: "1"
+        },
+        {
+            tran_head_id: "14",
+            head_name: "CDEPOSIT",
+            created_on: "21-05-2013",
+            created_by: "10876",
+            payment_head: "1",
+            scenaro_id: "21",
+            ob_scenaro_id: "20",
+            quick_payment_head: "1",
+            sub_head_code: "CDEPOSIT",
+            payment_data: "1",
+            category_id: "9",
+            daysheet_head: "1"
+        },
+        {
+            tran_head_id: "15",
+            head_name: "CDEPOSIT",
+            created_on: "21-05-2013",
+            created_by: "10876",
+            payment_head: "1",
+            scenaro_id: "21",
+            ob_scenaro_id: "20",
+            quick_payment_head: "1",
+            sub_head_code: "CDEPOSIT",
+            payment_data: "1",
+            category_id: "9",
+            daysheet_head: "1"
+        },
+        {
+            tran_head_id: "16",
+            head_name: "CDEPOSIT",
+            created_on: "21-05-2013",
+            created_by: "10876",
+            payment_head: "1",
+            scenaro_id: "21",
+            ob_scenaro_id: "20",
+            quick_payment_head: "1",
+            sub_head_code: "CDEPOSIT",
+            payment_data: "1",
+            category_id: "9",
+            daysheet_head: "1"
+        },
+        {
+            tran_head_id: "17",
+            head_name: "CDEPOSIT",
+            created_on: "21-05-2013",
+            created_by: "10876",
+            payment_head: "1",
+            scenaro_id: "21",
+            ob_scenaro_id: "20",
+            quick_payment_head: "1",
+            sub_head_code: "CDEPOSIT",
+            payment_data: "1",
+            category_id: "9",
+            daysheet_head: "1"
+        },
+        {
+            tran_head_id: "18",
+            head_name: "CDEPOSIT",
+            created_on: "21-05-2013",
+            created_by: "10876",
+            payment_head: "1",
+            scenaro_id: "21",
+            ob_scenaro_id: "20",
+            quick_payment_head: "1",
+            sub_head_code: "CDEPOSIT",
+            payment_data: "1",
+            category_id: "9",
+            daysheet_head: "1"
+        },
+        {
+            tran_head_id: "19",
+            head_name: "CDEPOSIT",
+            created_on: "21-05-2013",
+            created_by: "10876",
+            payment_head: "1",
+            scenaro_id: "21",
+            ob_scenaro_id: "20",
+            quick_payment_head: "1",
+            sub_head_code: "CDEPOSIT",
+            payment_data: "1",
+            category_id: "9",
+            daysheet_head: "1"
+        },
+        {
+            tran_head_id: "20",
+            head_name: "CDEPOSIT",
+            created_on: "21-05-2013",
+            created_by: "10876",
+            payment_head: "1",
+            scenaro_id: "21",
+            ob_scenaro_id: "20",
+            quick_payment_head: "1",
+            sub_head_code: "CDEPOSIT",
+            payment_data: "1",
+            category_id: "9",
+            daysheet_head: "1"
+        },
+        {
+            tran_head_id: "21",
+            head_name: "CDEPOSIT",
+            created_on: "21-05-2013",
+            created_by: "10876",
+            payment_head: "1",
+            scenaro_id: "21",
+            ob_scenaro_id: "20",
+            quick_payment_head: "1",
+            sub_head_code: "CDEPOSIT",
+            payment_data: "1",
+            category_id: "9",
+            daysheet_head: "1"
+        },
+        {
+            tran_head_id: "22",
+            head_name: "CDEPOSIT",
+            created_on: "21-05-2013",
+            created_by: "10876",
+            payment_head: "1",
+            scenaro_id: "21",
+            ob_scenaro_id: "20",
+            quick_payment_head: "1",
+            sub_head_code: "CDEPOSIT",
+            payment_data: "1",
+            category_id: "9",
+            daysheet_head: "1"
+        },
+        {
+            tran_head_id: "23",
+            head_name: "CDEPOSIT",
+            created_on: "21-05-2013",
+            created_by: "10876",
+            payment_head: "1",
+            scenaro_id: "21",
+            ob_scenaro_id: "20",
+            quick_payment_head: "1",
+            sub_head_code: "CDEPOSIT",
+            payment_data: "1",
+            category_id: "9",
+            daysheet_head: "1"
+        },
+        {
+            tran_head_id: "24",
+            head_name: "CDEPOSIT",
+            created_on: "21-05-2013",
+            created_by: "10876",
+            payment_head: "1",
+            scenaro_id: "21",
+            ob_scenaro_id: "20",
+            quick_payment_head: "1",
+            sub_head_code: "CDEPOSIT",
+            payment_data: "1",
+            category_id: "9",
+            daysheet_head: "1"
+        },
+        {
+            tran_head_id: "25",
+            head_name: "CDEPOSIT",
+            created_on: "21-05-2013",
+            created_by: "10876",
+            payment_head: "1",
+            scenaro_id: "21",
+            ob_scenaro_id: "20",
+            quick_payment_head: "1",
+            sub_head_code: "CDEPOSIT",
+            payment_data: "1",
+            category_id: "9",
+            daysheet_head: "1"
+        },
+        {
+            tran_head_id: "26",
+            head_name: "CDEPOSIT",
+            created_on: "21-05-2013",
+            created_by: "10876",
+            payment_head: "1",
+            scenaro_id: "21",
+            ob_scenaro_id: "20",
+            quick_payment_head: "1",
+            sub_head_code: "CDEPOSIT",
+            payment_data: "1",
+            category_id: "9",
+            daysheet_head: "1"
+        },
+        {
+            tran_head_id: "27",
+            head_name: "CDEPOSIT",
+            created_on: "21-05-2013",
+            created_by: "10876",
+            payment_head: "1",
+            scenaro_id: "21",
+            ob_scenaro_id: "20",
+            quick_payment_head: "1",
+            sub_head_code: "CDEPOSIT",
+            payment_data: "1",
+            category_id: "9",
+            daysheet_head: "1"
+        },
+        {
+            tran_head_id: "28",
+            head_name: "CDEPOSIT",
+            created_on: "21-05-2013",
+            created_by: "10876",
+            payment_head: "1",
+            scenaro_id: "21",
+            ob_scenaro_id: "20",
+            quick_payment_head: "1",
+            sub_head_code: "CDEPOSIT",
+            payment_data: "1",
+            category_id: "9",
+            daysheet_head: "1"
+        },
 
     ]);
     const [isEditMode, setIsEditMode] = useState(false);
     const [editIndex, setEditIndex] = useState(null);
+    const [isButtonGroupVisible, setIsButtonGroupVisible] = useState(true);
 
+    const tableContainerRef = useRef(null);
+    const lastScrollTop = useRef(0);
 
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.innerWidth > 480) return;
+
+            const scrollTop = tableContainerRef.current.scrollTop;
+            const isAtTop = scrollTop <= 0;
+
+            if (isAtTop) {
+                setIsButtonGroupVisible(true);
+            } else if (scrollTop < lastScrollTop.current) {
+                setIsButtonGroupVisible(false);
+            } else if (scrollTop > lastScrollTop.current) {
+                setIsButtonGroupVisible(false);
+            }
+
+            lastScrollTop.current = scrollTop;
+        };
+
+        const tableContainer = tableContainerRef.current;
+        tableContainer.addEventListener('scroll', handleScroll);
+
+        return () => {
+            tableContainer.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     const handleAddNewClick = () => {
         setShowForm(true);
@@ -457,17 +482,12 @@ const FeeheadsBar = () => {
         setShowForm(true);
     };
 
-
-
-
     return (
         <div className="main-section">
             <div className="feeheads-container">
-                <h1 className="title">Fee heads</h1>    
-                <div className="button-group">
-
+                <h1 className="title">Fee heads</h1>
+                <div className={`button-group ${!isButtonGroupVisible ? 'button-group-hidden' : ''}`}>
                     <button className="action-btn-filter">
-
                         <svg width="65" height="24" viewBox="0 0 65 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_4_34476)">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M5 5C5 4.73478 5.10536 4.48043 5.29289 4.29289C5.48043 4.10536 5.73478 4 6 4H18C18.2652 4 18.5196 4.10536 18.7071 4.29289C18.8946 4.48043 19 4.73478 19 5V8C18.9999 8.26519 18.8946 8.51951 18.707 8.707L14 13.414V17C13.9999 17.2652 13.8945 17.5195 13.707 17.707L11.707 19.707C11.5671 19.8468 11.389 19.942 11.195 19.9806C11.0011 20.0192 10.8 19.9993 10.6173 19.9237C10.4346 19.848 10.2785 19.7199 10.1686 19.5555C10.0587 19.391 10 19.1978 10 19V13.414L5.293 8.707C5.10545 8.51951 5.00006 8.26519 5 8V5Z" fill="#5B6871" />
@@ -493,7 +513,6 @@ const FeeheadsBar = () => {
                                 </clipPath>
                             </defs>
                         </svg>
-
                     </button>
                     <button className="action-btn-addnew" onClick={handleAddNewClick}>
                         <svg width="129" height="24" viewBox="0 0 129 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -507,16 +526,15 @@ const FeeheadsBar = () => {
                                 </clipPath>
                             </defs>
                         </svg>
-
                     </button>
                 </div>
             </div>
 
-            <div className="feeheads-table-container">
+            <div className="feeheads-table-container" ref={tableContainerRef}>
                 <table className="feeheads-table">
                     <thead className="table-head">
                         <tr>
-                        <th className="sticky-col-sticky-col-1"><input type="checkbox" /></th>
+                            <th className="sticky-col-sticky-col-1"><input type="checkbox" /></th>
                             <th>TRAN HEAD ID</th>
                             <th>HEAD NAME</th>
                             <th>CREATED ON</th>
@@ -535,7 +553,7 @@ const FeeheadsBar = () => {
                     <tbody>
                         {tableData.map((row, index) => (
                             <tr key={index} className="table-row">
-                                <td  className="sticky-col-sticky-col-1"><input type="checkbox"/></td>
+                                <td className="sticky-col-sticky-col-1"><input type="checkbox" /></td>
                                 <td>{row.tran_head_id}</td>
                                 <td>{row.head_name}</td>
                                 <td>{row.created_on}</td>
@@ -549,22 +567,23 @@ const FeeheadsBar = () => {
                                 <td>{row.category_id}</td>
                                 <td>{row.daysheet_head}</td>
                                 <td className="icons">
-                                    <button title="Delete" className="icon-btn"  onClick={() => handleViewClick(index)}>
+                                    <button title="Delete" className="icon-btn" onClick={() => handleViewClick(index)}>
                                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M2.5 5.00033H4.16667M4.16667 5.00033H17.5M4.16667 5.00033V16.667C4.16667 17.109 4.34226 17.5329 4.65482 17.8455C4.96738 18.1581 5.39131 18.3337 5.83333 18.3337H14.1667C14.6087 18.3337 15.0326 18.1581 15.3452 17.8455C15.6577 17.5329 15.8333 17.109 15.8333 16.667V5.00033H4.16667ZM6.66667 5.00033V3.33366C6.66667 2.89163 6.84226 2.46771 7.15482 2.15515C7.46738 1.84259 7.89131 1.66699 8.33333 1.66699H11.6667C12.1087 1.66699 12.5326 1.84259 12.8452 2.15515C13.1577 2.46771 13.3333 2.89163 13.3333 3.33366V5.00033M8.33333 9.16699V14.167M11.6667 9.16699V14.167" stroke="#667085" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
                                         </svg>
-
                                     </button>
-                                    <button title="Edit" className="icon-btn"  onClick={() => handleViewClick(index)}><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <g clip-path="url(#clip0_363_3927)">
-                                            <path d="M14.1665 2.49993C14.3854 2.28106 14.6452 2.10744 14.9312 1.98899C15.2171 1.87054 15.5236 1.80957 15.8332 1.80957C16.1427 1.80957 16.4492 1.87054 16.7352 1.98899C17.0211 2.10744 17.281 2.28106 17.4998 2.49993C17.7187 2.7188 17.8923 2.97863 18.0108 3.2646C18.1292 3.55057 18.1902 3.85706 18.1902 4.16659C18.1902 4.47612 18.1292 4.78262 18.0108 5.06859C17.8923 5.35455 17.7187 5.61439 17.4998 5.83326L6.24984 17.0833L1.6665 18.3333L2.9165 13.7499L14.1665 2.49993Z" stroke="#667085" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_363_3927">
-                                                <rect width="20" height="20" fill="white" />
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
+                                    <button title="Edit" className="icon-btn" onClick={() => handleViewClick(index)}>
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g clip-path="url(#clip0_363_3927)">
+                                                <path d="M14.1665 2.49993C14.3854 2.28106 14.6452 2.10744 14.9312 1.98899C15.2171 1.87054 15.5236 1.80957 15.8332 1.80957C16.1427 1.80957 16.4492 1.87054 16.7352 1.98899C17.0211 2.10744 17.281 2.28106 17.4998 2.49993C17.7187 2.7188 17.8923 2.97863 18.0108 3.2646C18.1292 3.55057 18.1902 3.85706 18.1902 4.16659C18.1902 4.47612 18.1292 4.78262 18.0108 5.06859C17.8923 5.35455 17.7187 5.61439 17.4998 5.83326L6.24984 17.0833L1.6665 18.3333L2.9165 13.7499L14.1665 2.49993Z" stroke="#667085" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
+                                            </g>
+                                            <defs>
+                                                <clipPath id="clip0_363_3927">
+                                                    <rect width="20" height="20" fill="white" />
+                                                </clipPath>
+                                            </defs>
+                                        </svg>
+
                                     </button>
                                     <button title="View" className="icon-btn" onClick={() => handleViewClick(index)}>
                                         <svg width="48" height="16" viewBox="0 0 48 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -572,7 +591,6 @@ const FeeheadsBar = () => {
                                             <path d="M10.5 8C10.5 7.46957 10.2893 6.96086 9.91421 6.58579C9.53914 6.21071 9.03043 6 8.5 6C7.96957 6 7.46086 6.21071 7.08579 6.58579C6.71071 6.96086 6.5 7.46957 6.5 8C6.5 8.53043 6.71071 9.03914 7.08579 9.41421C7.46086 9.78929 7.96957 10 8.5 10C9.03043 10 9.53914 9.78929 9.91421 9.41421C10.2893 9.03914 10.5 8.53043 10.5 8Z" stroke="#7B7B7B" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
                                             <path d="M20.9148 4.27273L23.5057 11.6193H23.608L26.1989 4.27273H27.3068L24.1023 13H23.0114L19.8068 4.27273H20.9148ZM28.5298 13V6.45455H29.5355V13H28.5298ZM29.0412 5.36364C28.8452 5.36364 28.6761 5.29688 28.5341 5.16335C28.3949 5.02983 28.3253 4.86932 28.3253 4.68182C28.3253 4.49432 28.3949 4.33381 28.5341 4.20028C28.6761 4.06676 28.8452 4 29.0412 4C29.2372 4 29.4048 4.06676 29.544 4.20028C29.6861 4.33381 29.7571 4.49432 29.7571 4.68182C29.7571 4.86932 29.6861 5.02983 29.544 5.16335C29.4048 5.29688 29.2372 5.36364 29.0412 5.36364ZM34.1218 13.1364C33.4911 13.1364 32.9471 12.9972 32.4897 12.7188C32.0352 12.4375 31.6843 12.0455 31.4371 11.5426C31.1928 11.0369 31.0707 10.4489 31.0707 9.77841C31.0707 9.10795 31.1928 8.51705 31.4371 8.00568C31.6843 7.49148 32.0281 7.09091 32.4684 6.80398C32.9116 6.5142 33.4286 6.36932 34.0195 6.36932C34.3604 6.36932 34.6971 6.42614 35.0295 6.53977C35.3619 6.65341 35.6644 6.83807 35.9371 7.09375C36.2099 7.34659 36.4272 7.68182 36.5891 8.09943C36.7511 8.51705 36.832 9.03125 36.832 9.64205V10.0682H31.7866V9.19886H35.8093C35.8093 8.82955 35.7354 8.5 35.5877 8.21023C35.4428 7.92045 35.2354 7.69176 34.9656 7.52415C34.6985 7.35653 34.3832 7.27273 34.0195 7.27273C33.619 7.27273 33.2724 7.37216 32.9798 7.57102C32.69 7.76705 32.467 8.02273 32.3107 8.33807C32.1545 8.65341 32.0763 8.99148 32.0763 9.35227V9.93182C32.0763 10.4261 32.1616 10.8452 32.332 11.1889C32.5053 11.5298 32.7454 11.7898 33.0522 11.9688C33.359 12.1449 33.7156 12.233 34.1218 12.233C34.386 12.233 34.6246 12.196 34.8377 12.1222C35.0536 12.0455 35.2397 11.9318 35.396 11.7812C35.5522 11.6278 35.6729 11.4375 35.7582 11.2102L36.7298 11.483C36.6275 11.8125 36.4556 12.1023 36.2141 12.3523C35.9727 12.5994 35.6744 12.7926 35.3192 12.9318C34.9641 13.0682 34.565 13.1364 34.1218 13.1364ZM39.8448 13L37.8505 6.45455H38.9073L40.3221 11.4659H40.3903L41.788 6.45455H42.8619L44.2425 11.4489H44.3107L45.7255 6.45455H46.7823L44.788 13H43.7994L42.3675 7.97159H42.2653L40.8335 13H39.8448Z" fill="#7B7B7B" />
                                         </svg>
-
 
                                     </button>
                                 </td>
@@ -582,19 +600,23 @@ const FeeheadsBar = () => {
                 </table>
             </div>
 
-
-
             {showForm && (
                 <>
                     <div className="overlay"></div>
                     <div className="form-popup">
                         <h3>{isEditMode ? "View" : "Add New Field"}</h3>
-                        <button className="close-btn" onClick={handleCancel}>&times;</button>
+                        <button className="close-btn" onClick={handleCancel}>×</button>
                         <form className="feeheads-form">
                             {Object.keys(initialFormState).map((field, index) => (
                                 <label key={index}>
                                     {field.replace(/_/g, ' ').toUpperCase()}
-                                    <input type="text"name={field}value={formData[field]}onChange={handleChange}placeholder={`Enter ${field.replace(/_/g, ' ').toUpperCase()}`}/>
+                                    <input
+                                        type="text"
+                                        name={field}
+                                        value={formData[field]}
+                                        onChange={handleChange}
+                                        placeholder={`Enter ${field.replace(/_/g, ' ').toUpperCase()}`}
+                                    />
                                 </label>
                             ))}
                             <div className="form-buttons">
@@ -602,18 +624,28 @@ const FeeheadsBar = () => {
                                     <button type="button" onClick={handleCancel} className="cancel-btn">Cancel</button>
                                 )}
                                 {isEditMode && (
-                                    <button type="button"onClick={() => {const updatedData = tableData.filter((_, idx) => idx !== editIndex);setTableData(updatedData);handleCancel();}}className="delete-btn">Delete</button>
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            const updatedData = tableData.filter((_, idx) => idx !== editIndex);
+                                            setTableData(updatedData);
+                                            handleCancel();
+                                        }}
+                                        className="delete-btn"
+                                    >
+                                        Delete
+                                    </button>
                                 )}
-                                <button type="button" onClick={handleAddField} className="add-btn">{isEditMode ? "Edit" : "Add New Field"}</button>
+                                <button type="button" onClick={handleAddField} className="add-btn">
+                                    {isEditMode ? "Edit" : "Add New Field"}
+                                </button>
                             </div>
-
                         </form>
                     </div>
                 </>
             )}
-           
         </div>
     );
-
 };
+
 export default FeeheadsBar;

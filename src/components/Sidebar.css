@@ -135,10 +135,10 @@
     .sidebar-content {
         display: none;
         position: fixed;
-        top: 57px;
+        top: 0;
         left: 0;
         width: 100%;
-        height: calc(100vh - 57px);
+        height: 100vh;
         background-color: #F6F8F9;
         z-index: 19;
         margin: 0;
@@ -149,9 +149,9 @@
 
     .sidebar-content.mobile-open {
         display: flex;
-        top: 57px;
-        z-index: 20;
-        animation: slideDown 0.3s ease-out forwards;
+    top: 57px; 
+    z-index: 20;
+    animation: slideDown 0.2s ease-out forwards;
     }
 
     .side-bottom-items {
