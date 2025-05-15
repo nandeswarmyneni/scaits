@@ -94,9 +94,9 @@
   z-index: 15;
 }
 
-.feeheads-table thead {
+.feeheads-table thead {  
   background-color: white;
-  position: sticky;
+  /* position: sticky; */
   top: 0;
   z-index: 10;
 }
@@ -224,7 +224,7 @@
 }
 
 .sticky-col-sticky-col-1 {
-  position: sticky;
+  /* position: sticky;  */
   left: 0px;
   z-index: 9;
   background-color: white;
@@ -249,8 +249,8 @@
   }
 
   .button-group {
-    position: fixed;
-    bottom: 0;
+    position: absolute;
+    bottom:0;
     left: 0;
     width: 100%;
     background-color: #FFFFFF;
