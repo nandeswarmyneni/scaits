@@ -535,7 +535,7 @@ const FeeheadsBar = () => {
                     <thead className="table-head">
                         <tr>
                             <th className="sticky-col-sticky-col-1"><input type="checkbox" /></th>
-                            <th>TRAN HEAD ID</th>
+                            <th className="sticky-col-sticky-col-2">TRAN HEAD ID</th>
                             <th>HEAD NAME</th>
                             <th>CREATED ON</th>
                             <th>CREATED BY</th>
@@ -554,7 +554,7 @@ const FeeheadsBar = () => {
                         {tableData.map((row, index) => (
                             <tr key={index} className="table-row">
                                 <td className="sticky-col-sticky-col-1"><input type="checkbox" /></td>
-                                <td>{row.tran_head_id}</td>
+                                <td className="sticky-col-sticky-col-2">{row.tran_head_id}</td>
                                 <td>{row.head_name}</td>
                                 <td>{row.created_on}</td>
                                 <td>{row.created_by}</td>
