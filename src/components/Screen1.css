@@ -96,7 +96,7 @@
 
 .feeheads-table thead {  
   background-color: white;
-  /* position: sticky; */
+  position: sticky;
   top: 0;
   z-index: 10;
 }
@@ -224,7 +224,7 @@
 }
 
 .sticky-col-sticky-col-1 {
-  /* position: sticky;  */
+  position: sticky; 
   left: 0px;
   z-index: 9;
   background-color: white;
