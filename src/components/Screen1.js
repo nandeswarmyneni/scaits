@@ -425,7 +425,7 @@ const FeeheadsBar = () => {
         const mediaQuery = window.matchMedia('(max-width: 480px)');
         const handleResize = () => setIsMobile(mediaQuery.matches);
         mediaQuery.addEventListener('change', handleResize);
-        handleResize(); // Initial check
+        handleResize();
         return () => mediaQuery.removeEventListener('change', handleResize);
     }, []);
 
