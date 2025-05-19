@@ -412,14 +412,22 @@ const FeeheadsBar = () => {
             category_id: "9",
             daysheet_head: "1"
         },
-
     ]);
     const [isEditMode, setIsEditMode] = useState(false);
     const [editIndex, setEditIndex] = useState(null);
     const [isButtonGroupVisible, setIsButtonGroupVisible] = useState(true);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);
 
     const tableContainerRef = useRef(null);
     const lastScrollTop = useRef(0);
+
+    useEffect(() => {
+        const mediaQuery = window.matchMedia('(max-width: 480px)');
+        const handleResize = () => setIsMobile(mediaQuery.matches);
+        mediaQuery.addEventListener('change', handleResize);
+        handleResize(); // Initial check
+        return () => mediaQuery.removeEventListener('change', handleResize);
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -499,6 +507,8 @@ const FeeheadsBar = () => {
                                 </clipPath>
                             </defs>
                         </svg>
+
+
                         <span className="notification-badge">1</span>
                     </button>
                     <button className="action-btn-export">
@@ -583,7 +593,6 @@ const FeeheadsBar = () => {
                                                 </clipPath>
                                             </defs>
                                         </svg>
-
                                     </button>
                                     <button title="View" className="icon-btn" onClick={() => handleViewClick(index)}>
                                         <svg width="48" height="16" viewBox="0 0 48 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -591,7 +600,6 @@ const FeeheadsBar = () => {
                                             <path d="M10.5 8C10.5 7.46957 10.2893 6.96086 9.91421 6.58579C9.53914 6.21071 9.03043 6 8.5 6C7.96957 6 7.46086 6.21071 7.08579 6.58579C6.71071 6.96086 6.5 7.46957 6.5 8C6.5 8.53043 6.71071 9.03914 7.08579 9.41421C7.46086 9.78929 7.96957 10 8.5 10C9.03043 10 9.53914 9.78929 9.91421 9.41421C10.2893 9.03914 10.5 8.53043 10.5 8Z" stroke="#7B7B7B" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
                                             <path d="M20.9148 4.27273L23.5057 11.6193H23.608L26.1989 4.27273H27.3068L24.1023 13H23.0114L19.8068 4.27273H20.9148ZM28.5298 13V6.45455H29.5355V13H28.5298ZM29.0412 5.36364C28.8452 5.36364 28.6761 5.29688 28.5341 5.16335C28.3949 5.02983 28.3253 4.86932 28.3253 4.68182C28.3253 4.49432 28.3949 4.33381 28.5341 4.20028C28.6761 4.06676 28.8452 4 29.0412 4C29.2372 4 29.4048 4.06676 29.544 4.20028C29.6861 4.33381 29.7571 4.49432 29.7571 4.68182C29.7571 4.86932 29.6861 5.02983 29.544 5.16335C29.4048 5.29688 29.2372 5.36364 29.0412 5.36364ZM34.1218 13.1364C33.4911 13.1364 32.9471 12.9972 32.4897 12.7188C32.0352 12.4375 31.6843 12.0455 31.4371 11.5426C31.1928 11.0369 31.0707 10.4489 31.0707 9.77841C31.0707 9.10795 31.1928 8.51705 31.4371 8.00568C31.6843 7.49148 32.0281 7.09091 32.4684 6.80398C32.9116 6.5142 33.4286 6.36932 34.0195 6.36932C34.3604 6.36932 34.6971 6.42614 35.0295 6.53977C35.3619 6.65341 35.6644 6.83807 35.9371 7.09375C36.2099 7.34659 36.4272 7.68182 36.5891 8.09943C36.7511 8.51705 36.832 9.03125 36.832 9.64205V10.0682H31.7866V9.19886H35.8093C35.8093 8.82955 35.7354 8.5 35.5877 8.21023C35.4428 7.92045 35.2354 7.69176 34.9656 7.52415C34.6985 7.35653 34.3832 7.27273 34.0195 7.27273C33.619 7.27273 33.2724 7.37216 32.9798 7.57102C32.69 7.76705 32.467 8.02273 32.3107 8.33807C32.1545 8.65341 32.0763 8.99148 32.0763 9.35227V9.93182C32.0763 10.4261 32.1616 10.8452 32.332 11.1889C32.5053 11.5298 32.7454 11.7898 33.0522 11.9688C33.359 12.1449 33.7156 12.233 34.1218 12.233C34.386 12.233 34.6246 12.196 34.8377 12.1222C35.0536 12.0455 35.2397 11.9318 35.396 11.7812C35.5522 11.6278 35.6729 11.4375 35.7582 11.2102L36.7298 11.483C36.6275 11.8125 36.4556 12.1023 36.2141 12.3523C35.9727 12.5994 35.6744 12.7926 35.3192 12.9318C34.9641 13.0682 34.565 13.1364 34.1218 13.1364ZM39.8448 13L37.8505 6.45455H38.9073L40.3221 11.4659H40.3903L41.788 6.45455H42.8619L44.2425 11.4489H44.3107L45.7255 6.45455H46.7823L44.788 13H43.7994L42.3675 7.97159H42.2653L40.8335 13H39.8448Z" fill="#7B7B7B" />
                                         </svg>
-
                                     </button>
                                 </td>
                             </tr>
@@ -607,18 +615,20 @@ const FeeheadsBar = () => {
                         <h3>{isEditMode ? "View" : "Add New Field"}</h3>
                         <button className="close-btn" onClick={handleCancel}>×</button>
                         <form className="feeheads-form">
-                            {Object.keys(initialFormState).map((field, index) => (
-                                <label key={index}>
-                                    {field.replace(/_/g, ' ').toUpperCase()}
-                                    <input
-                                        type="text"
-                                        name={field}
-                                        value={formData[field]}
-                                        onChange={handleChange}
-                                        placeholder={`Enter ${field.replace(/_/g, ' ').toUpperCase()}`}
-                                    />
-                                </label>
-                            ))}
+                            {Object.keys(initialFormState)
+                                .slice(0, isMobile ? 5 : undefined)
+                                .map((field, index) => (
+                                    <label key={index}>
+                                        {field.replace(/_/g, ' ').toUpperCase()}
+                                        <input
+                                            type="text"
+                                            name={field}
+                                            value={formData[field]}
+                                            onChange={handleChange}
+                                            placeholder={`Enter ${field.replace(/_/g, ' ').toUpperCase()}`}
+                                        />
+                                    </label>
+                                ))}
                             <div className="form-buttons">
                                 {!isEditMode && (
                                     <button type="button" onClick={handleCancel} className="cancel-btn">Cancel</button>
