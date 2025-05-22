@@ -117,7 +117,7 @@
   top: 85px;
   left: 580px;
   width: 480px;
-  height: 570px;
+  height: 620px;
   background: rgba(255, 255, 255, 1);
   border-radius: 12px;
   padding: 24px;
@@ -141,7 +141,7 @@
   display: flex;
   flex-direction: column;
   font-size: 13px;
-  color: #333;
+  color:#344054;
   gap: 4px;
 }
 
@@ -242,6 +242,7 @@
 .table-head {
   font-size: 12px;
   font-weight: 600;
+  height: 40px;
 }
 
 @media (max-width: 480px) {
@@ -272,6 +273,13 @@
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
     
   }
+  .delete-btn,
+  .cancel-btn {
+  background-color: white;
+  border: 1.1px solid rgba(217, 86, 86, 1);
+  color: #252C32;
+  border-radius: 6px;
+}
 
   .action-btn-filter,
   .action-btn-export, 
@@ -314,7 +322,7 @@
   display: flex;
   flex-direction: column;
   font-size: 13px;
-  color: #333;
+  color: #344054;
   width: 140px;
 }
 .feeheads-form {

@@ -1,427 +1,48 @@
 import React, { useState, useRef, useEffect } from "react";
+import axios from 'axios';
 import './Screen1.css';
 
 const initialFormState = {
-    tran_head_id: '',
+    tran_head_id: '', 
+    head_code: '', 
     head_name: '',
-    created_on: '',
-    created_by: '',
-    payment_head: '',
+    created_on: '', 
+    created_by: '', 
+    payment_head: '', 
     scenaro_id: '',
-    ob_scenaro_id: '',
+    ob_scenaro_id: '', 
     quick_payment_head: '',
     sub_head_code: '',
-    payment_data: '',
-    category_id: '',
-    daysheet_head: '',
+    payment_data: '', 
+    category_id: '', 
+    daysheet_head: '', 
+};
+
+const toCamelCase = (str) => {
+    return str
+        .split('_')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join(' ');
 };
 
 const FeeheadsBar = () => {
     const [showForm, setShowForm] = useState(false);
     const [formData, setFormData] = useState(initialFormState);
-    const [tableData, setTableData] = useState([
-        {
-            tran_head_id: "1",
-            head_name: "AKASH BOOKS",
-            created_on: "21-05-2013",
-            created_by: "10876",
-            payment_head: "0",
-            scenaro_id: "4",
-            ob_scenaro_id: "1",
-            quick_payment_head: "1",
-            sub_head_code: "AKASH BOOKS",
-            payment_data: "1",
-            category_id: "22",
-            daysheet_head: "1"
-        },
-        {
-            tran_head_id: "2",
-            head_name: "APP FEE",
-            created_on: "21-05-2013",
-            created_by: "10876",
-            payment_head: "0",
-            scenaro_id: "9",
-            ob_scenaro_id: "5",
-            quick_payment_head: "0",
-            sub_head_code: "APP FEE",
-            payment_data: "1",
-            category_id: "",
-            daysheet_head: "0"
-        },
-        {
-            tran_head_id: "3",
-            head_name: "BUS PASS",
-            created_on: "21-05-2013",
-            created_by: "10876",
-            payment_head: "1",
-            scenaro_id: "",
-            ob_scenaro_id: "",
-            quick_payment_head: "1",
-            sub_head_code: "BP PAYMENT",
-            payment_data: "1",
-            category_id: "18",
-            daysheet_head: "1"
-        },
-        {
-            tran_head_id: "4",
-            head_name: "CDEPOSIT",
-            created_on: "21-05-2013",
-            created_by: "10876",
-            payment_head: "1",
-            scenaro_id: "21",
-            ob_scenaro_id: "20",
-            quick_payment_head: "1",
-            sub_head_code: "CDEPOSIT",
-            payment_data: "1",
-            category_id: "9",
-            daysheet_head: "1"
-        },
-        {
-            tran_head_id: "5",
-            head_name: "EXAM FEE",
-            created_on: "21-05-2013",
-            created_by: "10876",
-            payment_head: "1",
-            scenaro_id: "26",
-            ob_scenaro_id: "27",
-            quick_payment_head: "1",
-            sub_head_code: "EXAM FEE",
-            payment_data: "1",
-            category_id: "14",
-            daysheet_head: "1"
-        },
-        {
-            tran_head_id: "6",
-            head_name: "FEE",
-            created_on: "21-05-2013",
-            created_by: "10876",
-            payment_head: "1",
-            scenaro_id: "",
-            ob_scenaro_id: "",
-            quick_payment_head: "1",
-            sub_head_code: "PAYMENT",
-            payment_data: "1",
-            category_id: "4",
-            daysheet_head: "1"
-        },
-        {
-            tran_head_id: "7",
-            head_name: "AKASH BOOKS",
-            created_on: "21-05-2013",
-            created_by: "10876",
-            payment_head: "0",
-            scenaro_id: "4",
-            ob_scenaro_id: "1",
-            quick_payment_head: "1",
-            sub_head_code: "AKASH BOOKS",
-            payment_data: "1",
-            category_id: "22",
-            daysheet_head: "1"
-        },
-        {
-            tran_head_id: "8",
-            head_name: "APP FEE",
-            created_on: "21-05-2013",
-            created_by: "10876",
-            payment_head: "0",
-            scenaro_id: "9",
-            ob_scenaro_id: "5",
-            quick_payment_head: "0",
-            sub_head_code: "APP FEE",
-            payment_data: "1",
-            category_id: "",
-            daysheet_head: "0"
-        },
-        {
-            tran_head_id: "9",
-            head_name: "BUS PASS",
-            created_on: "21-05-2013",
-            created_by: "10876",
-            payment_head: "1",
-            scenaro_id: "",
-            ob_scenaro_id: "",
-            quick_payment_head: "1",
-            sub_head_code: "BP PAYMENT",
-            payment_data: "1",
-            category_id: "18",
-            daysheet_head: "1"
-        },
-        {
-            tran_head_id: "10",
-            head_name: "CDEPOSIT",
-            created_on: "21-05-2013",
-            created_by: "10876",
-            payment_head: "1",
-            scenaro_id: "21",
-            ob_scenaro_id: "20",
-            quick_payment_head: "1",
-            sub_head_code: "CDEPOSIT",
-            payment_data: "1",
-            category_id: "9",
-            daysheet_head: "1"
-        },
-        {
-            tran_head_id: "11",
-            head_name: "CDEPOSIT",
-            created_on: "21-05-2013",
-            created_by: "10876",
-            payment_head: "1",
-            scenaro_id: "21",
-            ob_scenaro_id: "20",
-            quick_payment_head: "1",
-            sub_head_code: "CDEPOSIT",
-            payment_data: "1",
-            category_id: "9",
-            daysheet_head: "1"
-        },
-        {
-            tran_head_id: "12",
-            head_name: "CDEPOSIT",
-            created_on: "21-05-2013",
-            created_by: "10876",
-            payment_head: "1",
-            scenaro_id: "21",
-            ob_scenaro_id: "20",
-            quick_payment_head: "1",
-            sub_head_code: "CDEPOSIT",
-            payment_data: "1",
-            category_id: "9",
-            daysheet_head: "1"
-        },
-        {
-            tran_head_id: "13",
-            head_name: "CDEPOSIT",
-            created_on: "21-05-2013",
-            created_by: "10876",
-            payment_head: "1",
-            scenaro_id: "21",
-            ob_scenaro_id: "20",
-            quick_payment_head: "1",
-            sub_head_code: "CDEPOSIT",
-            payment_data: "1",
-            category_id: "9",
-            daysheet_head: "1"
-        },
-        {
-            tran_head_id: "14",
-            head_name: "CDEPOSIT",
-            created_on: "21-05-2013",
-            created_by: "10876",
-            payment_head: "1",
-            scenaro_id: "21",
-            ob_scenaro_id: "20",
-            quick_payment_head: "1",
-            sub_head_code: "CDEPOSIT",
-            payment_data: "1",
-            category_id: "9",
-            daysheet_head: "1"
-        },
-        {
-            tran_head_id: "15",
-            head_name: "CDEPOSIT",
-            created_on: "21-05-2013",
-            created_by: "10876",
-            payment_head: "1",
-            scenaro_id: "21",
-            ob_scenaro_id: "20",
-            quick_payment_head: "1",
-            sub_head_code: "CDEPOSIT",
-            payment_data: "1",
-            category_id: "9",
-            daysheet_head: "1"
-        },
-        {
-            tran_head_id: "16",
-            head_name: "CDEPOSIT",
-            created_on: "21-05-2013",
-            created_by: "10876",
-            payment_head: "1",
-            scenaro_id: "21",
-            ob_scenaro_id: "20",
-            quick_payment_head: "1",
-            sub_head_code: "CDEPOSIT",
-            payment_data: "1",
-            category_id: "9",
-            daysheet_head: "1"
-        },
-        {
-            tran_head_id: "17",
-            head_name: "CDEPOSIT",
-            created_on: "21-05-2013",
-            created_by: "10876",
-            payment_head: "1",
-            scenaro_id: "21",
-            ob_scenaro_id: "20",
-            quick_payment_head: "1",
-            sub_head_code: "CDEPOSIT",
-            payment_data: "1",
-            category_id: "9",
-            daysheet_head: "1"
-        },
-        {
-            tran_head_id: "18",
-            head_name: "CDEPOSIT",
-            created_on: "21-05-2013",
-            created_by: "10876",
-            payment_head: "1",
-            scenaro_id: "21",
-            ob_scenaro_id: "20",
-            quick_payment_head: "1",
-            sub_head_code: "CDEPOSIT",
-            payment_data: "1",
-            category_id: "9",
-            daysheet_head: "1"
-        },
-        {
-            tran_head_id: "19",
-            head_name: "CDEPOSIT",
-            created_on: "21-05-2013",
-            created_by: "10876",
-            payment_head: "1",
-            scenaro_id: "21",
-            ob_scenaro_id: "20",
-            quick_payment_head: "1",
-            sub_head_code: "CDEPOSIT",
-            payment_data: "1",
-            category_id: "9",
-            daysheet_head: "1"
-        },
-        {
-            tran_head_id: "20",
-            head_name: "CDEPOSIT",
-            created_on: "21-05-2013",
-            created_by: "10876",
-            payment_head: "1",
-            scenaro_id: "21",
-            ob_scenaro_id: "20",
-            quick_payment_head: "1",
-            sub_head_code: "CDEPOSIT",
-            payment_data: "1",
-            category_id: "9",
-            daysheet_head: "1"
-        },
-        {
-            tran_head_id: "21",
-            head_name: "CDEPOSIT",
-            created_on: "21-05-2013",
-            created_by: "10876",
-            payment_head: "1",
-            scenaro_id: "21",
-            ob_scenaro_id: "20",
-            quick_payment_head: "1",
-            sub_head_code: "CDEPOSIT",
-            payment_data: "1",
-            category_id: "9",
-            daysheet_head: "1"
-        },
-        {
-            tran_head_id: "22",
-            head_name: "CDEPOSIT",
-            created_on: "21-05-2013",
-            created_by: "10876",
-            payment_head: "1",
-            scenaro_id: "21",
-            ob_scenaro_id: "20",
-            quick_payment_head: "1",
-            sub_head_code: "CDEPOSIT",
-            payment_data: "1",
-            category_id: "9",
-            daysheet_head: "1"
-        },
-        {
-            tran_head_id: "23",
-            head_name: "CDEPOSIT",
-            created_on: "21-05-2013",
-            created_by: "10876",
-            payment_head: "1",
-            scenaro_id: "21",
-            ob_scenaro_id: "20",
-            quick_payment_head: "1",
-            sub_head_code: "CDEPOSIT",
-            payment_data: "1",
-            category_id: "9",
-            daysheet_head: "1"
-        },
-        {
-            tran_head_id: "24",
-            head_name: "CDEPOSIT",
-            created_on: "21-05-2013",
-            created_by: "10876",
-            payment_head: "1",
-            scenaro_id: "21",
-            ob_scenaro_id: "20",
-            quick_payment_head: "1",
-            sub_head_code: "CDEPOSIT",
-            payment_data: "1",
-            category_id: "9",
-            daysheet_head: "1"
-        },
-        {
-            tran_head_id: "25",
-            head_name: "CDEPOSIT",
-            created_on: "21-05-2013",
-            created_by: "10876",
-            payment_head: "1",
-            scenaro_id: "21",
-            ob_scenaro_id: "20",
-            quick_payment_head: "1",
-            sub_head_code: "CDEPOSIT",
-            payment_data: "1",
-            category_id: "9",
-            daysheet_head: "1"
-        },
-        {
-            tran_head_id: "26",
-            head_name: "CDEPOSIT",
-            created_on: "21-05-2013",
-            created_by: "10876",
-            payment_head: "1",
-            scenaro_id: "21",
-            ob_scenaro_id: "20",
-            quick_payment_head: "1",
-            sub_head_code: "CDEPOSIT",
-            payment_data: "1",
-            category_id: "9",
-            daysheet_head: "1"
-        },
-        {
-            tran_head_id: "27",
-            head_name: "CDEPOSIT",
-            created_on: "21-05-2013",
-            created_by: "10876",
-            payment_head: "1",
-            scenaro_id: "21",
-            ob_scenaro_id: "20",
-            quick_payment_head: "1",
-            sub_head_code: "CDEPOSIT",
-            payment_data: "1",
-            category_id: "9",
-            daysheet_head: "1"
-        },
-        {
-            tran_head_id: "28",
-            head_name: "CDEPOSIT",
-            created_on: "21-05-2013",
-            created_by: "10876",
-            payment_head: "1",
-            scenaro_id: "21",
-            ob_scenaro_id: "20",
-            quick_payment_head: "1",
-            sub_head_code: "CDEPOSIT",
-            payment_data: "1",
-            category_id: "9",
-            daysheet_head: "1"
-        },
-    ]);
+    const [tableData, setTableData] = useState([]);
     const [isEditMode, setIsEditMode] = useState(false);
-    const [editIndex, setEditIndex] = useState(null);
+    const [editId, setEditId] = useState(null);
     const [isButtonGroupVisible, setIsButtonGroupVisible] = useState(true);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     const tableContainerRef = useRef(null);
     const lastScrollTop = useRef(0);
 
+    const API_BASE_URL = 'http://localhost:8080/api/fee-heads';
+
     useEffect(() => {
+        fetchFeeHeads();
         const mediaQuery = window.matchMedia('(max-width: 480px)');
         const handleResize = () => setIsMobile(mediaQuery.matches);
         mediaQuery.addEventListener('change', handleResize);
@@ -455,39 +76,173 @@ const FeeheadsBar = () => {
         };
     }, []);
 
+    const fetchFeeHeads = async () => {
+        setIsLoading(true);
+        try {
+            const response = await axios.get(`${API_BASE_URL}/get_all_fee_heads`);
+            const formattedData = response.data.map(item => ({
+                ...item,
+                tran_head_id: Number(item.tran_head_id),
+                head_code: Number(item.head_code),
+                created_by: Number(item.created_by),
+                payment_head: Number(item.payment_head),
+                scenaro_id: Number(item.scenaro_id),
+                ob_scenaro_id: Number(item.ob_scenaro_id),
+                quick_payment_head: Number(item.quick_payment_head),
+                payment_data: Number(item.payment_data),
+                category_id: Number(item.category_id),
+                daysheet_head: Number(item.daysheet_head),
+                created_on: item.created_on ? new Date(item.created_on).toISOString().split('T')[0] : '',
+            }));
+            setTableData(formattedData);
+            setError(null);
+        } catch (err) {
+            setError('Failed to fetch fee heads');
+            console.error(err);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     const handleAddNewClick = () => {
         setShowForm(true);
         setIsEditMode(false);
         setFormData(initialFormState);
+        setEditId(null);
     };
 
     const handleCancel = () => {
         setShowForm(false);
         setFormData(initialFormState);
         setIsEditMode(false);
-        setEditIndex(null);
+        setEditId(null);
+        setError(null);
     };
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
-    const handleAddField = () => {
-        if (isEditMode) {
-            const updatedData = [...tableData];
-            updatedData[editIndex] = formData;
-            setTableData(updatedData);
+        const { name, value } = e.target;
+        const numericFields = [
+            'tran_head_id',
+            'head_code',
+            'created_by',
+            'payment_head',
+            'scenaro_id',
+            'ob_scenaro_id',
+            'quick_payment_head',
+            'payment_data',
+            'category_id',
+            'daysheet_head',
+        ];
+        if (numericFields.includes(name)) {
+            setFormData({ ...formData, [name]: value === '' ? 0 : Number(value) });
         } else {
-            setTableData([...tableData, formData]);
+            setFormData({ ...formData, [name]: value });
         }
-        handleCancel();
     };
 
-    const handleViewClick = (index) => {
-        setFormData(tableData[index]);
-        setEditIndex(index);
-        setIsEditMode(true);
-        setShowForm(true);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsLoading(true);
+        setError(null);
+
+        const submitData = {
+            ...formData,
+            created_on: formData.created_on ? new Date(formData.created_on).toISOString() : null,
+        };
+
+        try {
+            if (isEditMode) {
+                const response = await axios.put(`${API_BASE_URL}/updateFeeHead/${editId}`, submitData);
+                const updatedItem = {
+                    ...response.data,
+                    tran_head_id: Number(response.data.tran_head_id),
+                    head_code: Number(response.data.head_code),
+                    created_by: Number(response.data.created_by),
+                    payment_head: Number(response.data.payment_head),
+                    scenaro_id: Number(response.data.scenaro_id),
+                    ob_scenaro_id: Number(response.data.ob_scenaro_id),
+                    quick_payment_head: Number(response.data.quick_payment_head),
+                    payment_data: Number(response.data.payment_data),
+                    category_id: Number(response.data.category_id),
+                    daysheet_head: Number(response.data.daysheet_head),
+                    created_on: response.data.created_on ? new Date(response.data.created_on).toISOString().split('T')[0] : '',
+                };
+                setTableData(tableData.map(item => 
+                    item.tran_head_id === editId ? updatedItem : item
+                ));
+            } else {
+                const response = await axios.post(`${API_BASE_URL}/Add_fee_head`, submitData);
+                const newItem = {
+                    ...response.data,
+                    tran_head_id: Number(response.data.tran_head_id),
+                    head_code: Number(response.data.head_code),
+                    created_by: Number(response.data.created_by),
+                    payment_head: Number(response.data.payment_head),
+                    scenaro_id: Number(response.data.scenaro_id),
+                    ob_scenaro_id: Number(response.data.ob_scenaro_id),
+                    quick_payment_head: Number(response.data.quick_payment_head),
+                    payment_data: Number(response.data.payment_data),
+                    category_id: Number(response.data.category_id),
+                    daysheet_head: Number(response.data.daysheet_head),
+                    created_on: response.data.created_on ? new Date(response.data.created_on).toISOString().split('T')[0] : '',
+                };
+                setTableData([...tableData, newItem]);
+            }
+            handleCancel();
+        } catch (err) {
+            setError(isEditMode ? 'Failed to update fee head' : 'Failed to create fee head');
+            console.error(err);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleDelete = async (id) => {
+        setIsLoading(true);
+        setError(null);
+
+        try {
+            await axios.delete(`${API_BASE_URL}/deleteFeeHead/${id}`);
+            setTableData(tableData.filter(item => item.tran_head_id !== id));
+            handleCancel();
+        } catch (err) {
+            setError('Failed to delete fee head');
+            console.error(err);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleViewClick = async (id) => {
+        setIsLoading(true);
+        setError(null);
+
+        try {
+            const response = await axios.get(`${API_BASE_URL}/getFeeHeadById/${id}`);
+            const fetchedData = {
+                ...response.data,
+                tran_head_id: Number(response.data.tran_head_id),
+                head_code: Number(response.data.head_code),
+                created_by: Number(response.data.created_by),
+                payment_head: Number(response.data.payment_head),
+                scenaro_id: Number(response.data.scenaro_id),
+                ob_scenaro_id: Number(response.data.ob_scenaro_id),
+                quick_payment_head: Number(response.data.quick_payment_head),
+                payment_data: Number(response.data.payment_data),
+                category_id: Number(response.data.category_id),
+                daysheet_head: Number(response.data.daysheet_head),
+                created_on: response.data.created_on ? new Date(response.data.created_on).toISOString().split('T')[0] : '',
+            };
+            setFormData(fetchedData);
+            setEditId(id);
+            setIsEditMode(true);
+            setShowForm(true);
+        } catch (err) {
+            setError('Failed to fetch fee head details');
+            console.error(err);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -507,8 +262,6 @@ const FeeheadsBar = () => {
                                 </clipPath>
                             </defs>
                         </svg>
-
-
                         <span className="notification-badge">1</span>
                     </button>
                     <button className="action-btn-export">
@@ -528,7 +281,7 @@ const FeeheadsBar = () => {
                         <svg width="129" height="24" viewBox="0 0 129 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_4_34488)">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M12 7C12.2652 7 12.5196 7.10536 12.7071 7.29289C12.8946 7.48043 13 7.73478 13 8V11H16C16.2652 11 16.5196 11.1054 16.7071 11.2929C16.8946 11.4804 17 11.7348 17 12C17 12.2652 16.8946 12.5196 16.7071 12.7071C16.5196 12.8946 16.2652 13 16 13H13V16C13 16.2652 12.8946 16.5196 12.7071 16.7071C12.5196 16.8946 12.2652 17 12 17C11.7348 17 11.4804 16.8946 11.2929 16.7071C11.1054 16.5196 11 16.2652 11 16V13H8C7.73478 13 7.48043 12.8946 7.29289 12.7071C7.10536 12.5196 7 12.2652 7 12C7 11.7348 7.10536 11.4804 7.29289 11.2929C7.48043 11.1054 7.73478 11 8 11H11V8C11 7.73478 11.1054 7.48043 11.2929 7.29289C11.4804 7.10536 11.7348 7 12 7Z" fill="white" />
-                                <path d="M34.3118 17H32.343L35.9276 6.81818H38.2045L41.794 17H39.8253L37.1058 8.90625H37.0263L34.3118 17ZM34.3764 13.0078H39.7457V14.4893H34.3764V13.0078ZM45.573 17.1342C44.9731 17.1342 44.4361 16.9801 43.9622 16.6719C43.4882 16.3636 43.1137 15.9162 42.8386 15.3295C42.5635 14.7429 42.4259 14.0303 42.4259 13.1918C42.4259 12.3433 42.5651 11.6274 42.8436 11.044C43.1253 10.4574 43.5048 10.0149 43.9821 9.71662C44.4593 9.41501 44.9913 9.2642 45.5779 9.2642C46.0254 9.2642 46.3933 9.34044 46.6816 9.4929C46.97 9.64205 47.1987 9.82268 47.3677 10.0348C47.5367 10.2436 47.6677 10.4408 47.7605 10.6264H47.835V6.81818H49.6397V17H47.8698V15.7969H47.7605C47.6677 15.9825 47.5334 16.1797 47.3578 16.3885C47.1821 16.594 46.9501 16.7696 46.6617 16.9155C46.3734 17.0613 46.0105 17.1342 45.573 17.1342ZM46.0751 15.6577C46.4562 15.6577 46.7811 15.5549 47.0495 15.3494C47.318 15.1406 47.5218 14.8506 47.661 14.4794C47.8002 14.1082 47.8698 13.6757 47.8698 13.1818C47.8698 12.688 47.8002 12.2588 47.661 11.8942C47.5251 11.5296 47.323 11.2462 47.0545 11.044C46.7893 10.8419 46.4629 10.7408 46.0751 10.7408C45.674 10.7408 45.3393 10.8452 45.0708 11.054C44.8024 11.2628 44.6002 11.5511 44.4643 11.919C44.3284 12.2869 44.2605 12.7079 44.2605 13.1818C44.2605 13.6591 44.3284 14.085 44.4643 14.4595C44.6035 14.8307 44.8073 15.1241 45.0758 15.3395C45.3476 15.5516 45.6807 15.6577 46.0751 15.6577ZM54.3073 17.1342C53.7074 17.1342 53.1705 16.9801 52.6965 16.6719C52.2226 16.3636 51.848 15.9162 51.5729 15.3295C51.2979 14.7429 51.1603 14.0303 51.1603 13.1918C51.1603 12.3433 51.2995 11.6274 51.5779 11.044C51.8596 10.4574 52.2391 10.0149 52.7164 9.71662C53.1937 9.41501 53.7256 9.2642 54.3123 9.2642C54.7597 9.2642 55.1276 9.34044 55.416 9.4929C55.7043 9.64205 55.933 9.82268 56.1021 10.0348C56.2711 10.2436 56.402 10.4408 56.4948 10.6264H56.5694V6.81818H58.3741V17H56.6042V15.7969H56.4948C56.402 15.9825 56.2678 16.1797 56.0921 16.3885C55.9165 16.594 55.6845 16.7696 55.3961 16.9155C55.1077 17.0613 54.7448 17.1342 54.3073 17.1342ZM54.8095 15.6577C55.1906 15.6577 55.5154 15.5549 55.7839 15.3494C56.0523 15.1406 56.2562 14.8506 56.3954 14.4794C56.5346 14.1082 56.6042 13.6757 56.6042 13.1818C56.6042 12.688 56.5346 12.2588 56.3954 11.8942C56.2595 11.5296 56.0573 11.2462 55.7889 11.044C55.5237 10.8419 55.1972 10.7408 54.8095 10.7408C54.4084 10.7408 54.0737 10.8452 53.8052 11.054C53.5367 11.2628 53.3345 11.5511 53.1987 11.919C53.0628 12.2869 52.9948 12.7079 52.9948 13.1818C52.9948 13.6591 53.0628 14.085 53.1987 14.4595C53.3379 14.8307 53.5417 15.1241 53.8102 15.3395C54.0819 15.5516 54.415 15.6577 54.8095 15.6577ZM72.0433 6.81818V17H70.4026L65.6051 10.0646H65.5205V17H63.6761V6.81818H65.3266L70.1193 13.7585H70.2087V6.81818H72.0433ZM77.2702 17.1491C76.5045 17.1491 75.8433 16.9901 75.2865 16.6719C74.733 16.3504 74.3071 15.8963 74.0088 15.3097C73.7105 14.7197 73.5614 14.0253 73.5614 13.2266C73.5614 12.4411 73.7105 11.7517 74.0088 11.1584C74.3104 10.5618 74.7313 10.0978 75.2716 9.76633C75.8118 9.43158 76.4465 9.2642 77.1757 9.2642C77.6463 9.2642 78.0905 9.34044 78.5081 9.4929C78.929 9.64205 79.3002 9.87405 79.6217 10.1889C79.9465 10.5038 80.2017 10.9048 80.3874 11.392C80.573 11.8759 80.6658 12.4527 80.6658 13.1222V13.674H74.4065V12.4609H78.9406C78.9373 12.1162 78.8627 11.8097 78.7169 11.5412C78.5711 11.2694 78.3672 11.0556 78.1054 10.8999C77.8469 10.7441 77.5453 10.6662 77.2006 10.6662C76.8327 10.6662 76.5095 10.7557 76.2311 10.9347C75.9527 11.1103 75.7356 11.3423 75.5798 11.6307C75.4274 11.9157 75.3495 12.2289 75.3462 12.5703V13.6293C75.3462 14.0734 75.4274 14.4545 75.5898 14.7727C75.7522 15.0876 75.9792 15.3295 76.2709 15.4986C76.5625 15.6643 76.9039 15.7472 77.295 15.7472C77.5569 15.7472 77.7938 15.7107 78.006 15.6378C78.2181 15.5616 78.402 15.4505 78.5578 15.3047C78.7136 15.1589 78.8312 14.9782 78.9108 14.7628L80.5912 14.9517C80.4851 15.3958 80.2829 15.7836 79.9847 16.1151C79.6897 16.4432 79.3118 16.6984 78.8511 16.8807C78.3904 17.0597 77.8634 17.1491 77.2702 17.1491ZM83.6393 17L81.4816 9.36364H83.3161L84.6585 14.733H84.7281L86.1002 9.36364H87.9149L89.287 14.7031H89.3616L90.684 9.36364H92.5235L90.3609 17H88.4866L87.0548 11.8395H86.9504L85.5185 17H83.6393ZM97.1643 17V6.81818H103.687V8.36435H99.0088V11.1286H103.24V12.6747H99.0088V17H97.1643ZM105.204 17V9.36364H107.004V17H105.204ZM106.109 8.27983C105.824 8.27983 105.578 8.18537 105.373 7.99645C105.167 7.80421 105.065 7.57386 105.065 7.3054C105.065 7.03362 105.167 6.80327 105.373 6.61435C105.578 6.42211 105.824 6.32599 106.109 6.32599C106.397 6.32599 106.642 6.42211 106.845 6.61435C107.05 6.80327 107.153 7.03362 107.153 7.3054C107.153 7.57386 107.05 7.80421 106.845 7.99645C106.642 8.18537 106.397 8.27983 106.109 8.27983ZM112.151 17.1491C111.385 17.1491 110.724 16.9901 110.167 16.6719C109.614 16.3504 109.188 15.8963 108.89 15.3097C108.591 14.7197 108.442 14.0253 108.442 13.2266C108.442 12.4411 108.591 11.7517 108.89 11.1584C109.191 10.5618 109.612 10.0978 110.152 9.76633C110.693 9.43158 111.327 9.2642 112.056 9.2642C112.527 9.2642 112.971 9.34044 113.389 9.4929C113.81 9.64205 114.181 9.87405 114.503 10.1889C114.827 10.5038 115.083 10.9048 115.268 11.392C115.454 11.8759 115.547 12.4527 115.547 13.1222V13.674H109.287V12.4609H113.821C113.818 12.1162 113.744 11.8097 113.598 11.5412C113.452 11.2694 113.248 11.0556 112.986 10.8999C112.728 10.7441 112.426 10.6662 112.081 10.6662C111.713 10.6662 111.39 10.7557 111.112 10.9347C110.833 11.1103 110.616 11.3423 110.461 11.6307C110.308 11.9157 110.23 12.2289 110.227 12.5703V13.6293C110.227 14.0734 110.308 14.4545 110.471 14.7727C110.633 15.0876 110.86 15.3295 111.152 15.4986C111.443 15.6643 111.785 15.7472 112.176 15.7472C112.438 15.7472 112.675 15.7107 112.887 15.6378C113.099 15.5616 113.283 15.4505 113.439 15.3047C113.594 15.1589 113.712 14.9782 113.792 14.7628L115.472 14.9517C115.366 15.3958 115.164 15.7836 114.865 16.1151C114.57 16.4432 114.193 16.6984 113.732 16.8807C113.271 17.0597 112.744 17.1491 112.151 17.1491ZM118.785 6.81818V17H116.985V6.81818H118.785ZM123.385 17.1342C122.785 17.1342 122.248 16.9801 121.774 16.6719C121.301 16.3636 120.926 15.9162 120.651 15.3295C120.376 14.7429 120.238 14.0303 120.238 13.1918C120.238 12.3433 120.377 11.6274 120.656 11.044C120.938 10.4574 121.317 10.0149 121.794 9.71662C122.272 9.41501 122.804 9.2642 123.39 9.2642C123.838 9.2642 124.206 9.34044 124.494 9.4929C124.782 9.64205 125.011 9.82268 125.18 10.0348C125.349 10.2436 125.48 10.4408 125.573 10.6264H125.647V6.81818H127.452V17H125.682V15.7969H125.573C125.48 15.9825 125.346 16.1797 125.17 16.3885C124.994 16.594 124.762 16.7696 124.474 16.9155C124.186 17.0613 123.823 17.1342 123.385 17.1342ZM123.887 15.6577C124.269 15.6577 124.593 15.5549 124.862 15.3494C125.13 15.1406 125.334 14.8506 125.473 14.4794C125.613 14.1082 125.682 13.6757 125.682 13.1818C125.682 12.688 125.613 12.2588 125.473 11.8942C125.337 11.5296 125.135 11.2462 124.867 11.044C124.602 10.8419 124.275 10.7408 123.887 10.7408C123.486 10.7408 123.152 10.8452 122.883 11.054C122.615 11.2628 122.413 11.5511 122.277 11.919C122.141 12.2869 122.073 12.7079 122.073 13.1818C122.073 13.6591 122.141 14.085 122.277 14.4595C122.416 14.8307 122.62 15.1241 122.888 15.3395C123.16 15.5516 123.493 15.6577 123.887 15.6577Z" fill="#F6F8F9" />
+                                <path d="M34.3118 17H32.343L35.9276 6.81818H38.2045L41.794 17H39.8253L37.1058 8.90625H37.0263L34.3118 17ZM34.3764 13.0078H39.7457V14.4893H34.3764V13.0078ZM45.573 17.1342C44.9731 17.1342 44.4361 16.9801 43.9622 16.6719C43.4882 16.3636 43.1137 15.9162 42.8386 15.3295C42.5635 14.7429 42.4259 14.0303 42.4259 13.1918C42.4259 12.3433 42.5651 11.6274 42.8436 11.044C43.1253 10.4574 43.5048 10.0149 43.9821 9.71662C44.4593 9.41501 44.9913 9.2642 45.5779 9.2642C46.0254 9.2642 46.3933 9.34044 46.6816 9.4929C46.97 9.64205 47.1987 9.82268 47.3677 10.0348C47.5367 10.2436 47.6677 10.4408 47.7605 10.6264H47.835V6.81818H49.6397V17H47.8698V15.7969H47.7605C47.6677 15.9825 47.5334 16.1797 47.3578 16.3885C47.1821 16.594 46.9501 16.7696 46.6617 16.9155C46.3734 17.0613 46.0105 17.1342 45.573 17.1342ZM46.0751 15.6577C46.4562 15.6577 46.7811 15.5549 47.0495 15.3494C47.318 15.1406 47.5218 14.8506 47.661 14.4794C47.8002 14.1082 47.8698 13.6757 47.8698 13.1818C47.8698 12.688 47.8002 12.2588 47.661 11.8942C47.5251 11.5296 47.323 11.2462 47.0545 11.044C46.7893 10.8419 46.4629 10.7408 46.0751 10.7408C45.674 10.7408 45.3393 10.8452 45.0708 11.054C44.8024 11.2628 44.6002 11.5511 44.4643 11.919C44.3284 12.2869 44.2605 12.7079 44.2605 13.1818C44.2605 13.6591 44.3284 14.085 44.4643 14.4595C44.6035 14.8307 44.8073 15.1241 45.0758 15.3395C45.3476 15.5516 46.6807 15.6577 46.0751 15.6577ZM54.3073 17.1342C53.7074 17.1342 53.1705 16.9801 52.6965 16.6719C52.2226 16.3636 51.848 15.9162 51.5729 15.3295C51.2979 14.7429 51.1603 14.0303 51.1603 13.1918C51.1603 12.3433 51.2995 11.6274 51.5779 11.044C51.8596 10.4574 52.2391 10.0149 52.7164 9.71662C53.1937 9.41501 53.7256 9.2642 54.3123 9.2642C54.7597 9.2642 55.1276 9.34044 55.416 9.4929C55.7043 9.64205 55.933 9.82268 56.1021 10.0348C56.2711 10.2436 56.402 10.4408 56.4948 10.6264H56.5694V6.81818H58.3741V17H56.6042V15.7969H56.4948C56.402 15.9825 56.2678 16.1797 56.0921 16.3885C55.9165 16.594 55.6845 16.7696 55.3961 16.9155C55.1077 17.0613 54.7448 17.1342 54.3073 17.1342ZM54.8095 15.6577C55.1906 15.6577 55.5154 15.5549 55.7839 15.3494C56.0523 15.1406 56.2562 14.8506 56.3954 14.4794C56.5346 14.1082 56.6042 13.6757 56.6042 13.1818C56.6042 12.688 56.5346 12.2588 56.3954 11.8942C56.2595 11.5296 56.0573 11.2462 55.7889 11.044C55.5237 10.8419 55.1972 10.7408 54.8095 10.7408C54.4084 10.7408 54.0737 10.8452 53.8052 11.054C53.5367 11.2628 53.3345 11.5511 53.1987 11.919C53.0628 12.2869 52.9948 12.7079 52.9948 13.1818C52.9948 13.6591 53.0628 14.085 53.1987 14.4595C53.3379 14.8307 53.5417 15.1241 53.8102 15.3395C54.0819 15.5516 54.415 15.6577 54.8095 15.6577ZM72.0433 6.81818V17H70.4026L65.6051 10.0646H65.5205V17H63.6761V6.81818H65.3266L70.1193 13.7585H70.2087V6.81818H72.0433ZM77.2702 17.1491C76.5045 17.1491 75.8433 16.9901 75.2865 16.6719C74.733 16.3504 74.3071 15.8963 74.0088 15.3097C73.7105 14.7197 73.5614 14.0253 73.5614 13.2266C73.5614 12.4411 73.7105 11.7517 74.0088 11.1584C74.3104 10.5618 74.7313 10.0978 75.2716 9.76633C75.8118 9.43158 76.4465 9.2642 77.1757 9.2642C77.6463 9.2642 78.0905 9.34044 78.5081 9.4929C78.929 9.64205 79.3002 9.87405 79.6217 10.1889C79.9465 10.5038 80.2017 10.9048 80.3874 11.392C80.573 11.8759 80.6658 12.4527 80.6658 13.1222V13.674H74.4065V12.4609H78.9406C78.9373 12.1162 78.8627 11.8097 78.7169 11.5412C78.5711 11.2694 78.3672 11.0556 78.1054 10.8999C77.8469 10.7441 77.5453 10.6662 77.2006 10.6662C76.8327 10.6662 76.5095 10.7557 76.2311 10.9347C75.9527 11.1103 75.7356 11.3423 75.5798 11.6307C75.4274 11.9157 75.3495 12.2289 75.3462 12.5703V13.6293C75.3462 14.0734 75.4274 14.4545 75.5898 14.7727C75.7522 15.0876 75.9792 15.3295 76.2709 15.4986C76.5625 15.6643 76.9039 15.7472 77.295 15.7472C77.5569 15.7472 77.7938 15.7107 78.006 15.6378C78.2181 15.5616 78.402 15.4505 78.5578 15.3047C78.7136 15.1589 78.8312 14.9782 78.9108 14.7628L80.5912 14.9517C80.4851 15.3958 80.2829 15.7836 79.9847 16.1151C79.6897 16.4432 79.3118 16.6984 78.8511 16.8807C78.3904 17.0597 77.8634 17.1491 77.2702 17.1491ZM83.6393 17L81.4816 9.36364H83.3161L84.6585 14.733H84.7281L86.1002 9.36364H87.9149L89.287 14.7031H89.3616L90.684 9.36364H92.5235L90.3609 17H88.4866L87.0548 11.8395H86.9504L85.5185 17H83.6393ZM97.1643 17V6.81818H103.687V8.36435H99.0088V11.1286H103.24V12.6747H99.0088V17H97.1643ZM105.204 17V9.36364H107.004V17H105.204ZM106.109 8.27983C105.824 8.27983 105.578 8.18537 105.373 7.99645C105.167 7.80421 105.065 7.57386 105.065 7.3054C105.065 7.03362 105.167 6.80327 105.373 6.61435C105.578 6.42211 105.824 6.32599 106.109 6.32599C106.397 6.32599 106.642 6.42211 106.845 6.61435C107.05 6.80327 107.153 7.03362 107.153 7.3054C107.153 7.57386 107.05 7.80421 106.845 7.99645C106.642 8.18537 106.397 8.27983 106.109 8.27983ZM112.151 17.1491C111.385 17.1491 110.724 16.9901 110.167 16.6719C109.614 16.3504 109.188 15.8963 108.89 15.3097C108.591 14.7197 108.442 14.0253 108.442 13.2266C108.442 12.4411 108.591 11.7517 108.89 11.1584C109.191 10.5618 109.612 10.0978 110.152 9.76633C110.693 9.43158 111.327 9.2642 112.056 9.2642C112.527 9.2642 112.971 9.34044 113.389 9.4929C113.81 9.64205 114.181 9.87405 114.503 10.1889C114.827 10.5038 115.083 10.9048 115.268 11.392C115.454 11.8759 115.547 12.4527 115.547 13.1222V13.674H109.287V12.4609H113.821C113.818 12.1162 113.744 11.8097 113.598 11.5412C113.452 11.2694 113.248 11.0556 112.986 10.8999C112.728 10.7441 112.426 10.6662 112.081 10.6662C111.713 10.6662 111.39 10.7557 111.112 10.9347C110.833 11.1103 110.616 11.3423 110.461 11.6307C110.308 11.9157 110.23 12.2289 110.227 12.5703V13.6293C110.227 14.0734 110.308 14.4545 110.471 14.7727C110.633 15.0876 110.86 15.3295 111.152 15.4986C111.443 15.6643 111.785 15.7472 112.176 15.7472C112.438 15.7472 112.675 15.7107 112.887 15.6378C113.099 15.5616 113.283 15.4505 113.439 15.3047C113.594 15.1589 113.712 14.9782 113.792 14.7628L115.472 14.9517C115.366 15.3958 115.164 15.7836 114.865 16.1151C114.57 16.4432 114.193 16.6984 113.732 16.8807C113.271 17.0597 112.744 17.1491 112.151 17.1491ZM118.785 6.81818V17H116.985V6.81818H118.785ZM123.385 17.1342C122.785 17.1342 122.248 16.9801 121.774 16.6719C121.301 16.3636 120.926 15.9162 120.651 15.3295C120.376 14.7429 120.238 14.0303 120.238 13.1918C120.238 12.3433 120.377 11.6274 120.656 11.044C120.938 10.4574 121.317 10.0149 121.794 9.71662C122.272 9.41501 122.804 9.2642 123.39 9.2642C123.838 9.2642 124.206 9.34044 124.494 9.4929C124.782 9.64205 125.011 9.82268 125.18 10.0348C125.349 10.2436 125.48 10.4408 125.573 10.6264H125.647V6.81818H127.452V17H125.682V15.7969H125.573C125.48 15.9825 125.346 16.1797 125.17 16.3885C124.994 16.594 124.762 16.7696 124.474 16.9155C124.186 17.0613 123.823 17.1342 123.385 17.1342ZM123.887 15.6577C124.269 15.6577 124.593 15.5549 124.862 15.3494C125.13 15.1406 125.334 14.8506 125.473 14.4794C125.613 14.1082 125.682 13.6757 125.682 13.1818C125.682 12.688 125.613 12.2588 125.473 11.8942C125.337 11.5296 125.135 11.2462 124.867 11.044C124.602 10.8419 124.275 10.7408 123.887 10.7408C123.486 10.7408 123.152 10.8452 122.883 11.054C122.615 11.2628 122.413 11.5511 122.277 11.919C122.141 12.2869 122.073 12.7079 122.073 13.1818C122.073 13.6591 122.141 14.085 122.277 14.4595C122.416 14.8307 122.62 15.1241 122.888 15.3395C123.16 15.5516 123.493 15.6577 123.887 15.6577Z" fill="#F6F8F9" />
                             </g>
                             <defs>
                                 <clipPath id="clip0_4_34488">
@@ -540,12 +293,16 @@ const FeeheadsBar = () => {
                 </div>
             </div>
 
+            {isLoading && <div>Loading...</div>}
+            {error && <div className="error-message">{error}</div>}
+
             <div className="feeheads-table-container" ref={tableContainerRef}>
                 <table className="feeheads-table">
                     <thead className="table-head">
                         <tr>
                             <th className="sticky-col-sticky-col-1"><input type="checkbox" /></th>
                             <th className="sticky-col-sticky-col-2">TRAN HEAD ID</th>
+                            <th>HEAD CODE</th>
                             <th>HEAD NAME</th>
                             <th>CREATED ON</th>
                             <th>CREATED BY</th>
@@ -561,10 +318,11 @@ const FeeheadsBar = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {tableData.map((row, index) => (
-                            <tr key={index} className="table-row">
+                        {tableData.map((row) => (
+                            <tr key={row.tran_head_id} className="table-row">
                                 <td className="sticky-col-sticky-col-1"><input type="checkbox" /></td>
                                 <td className="sticky-col-sticky-col-2">{row.tran_head_id}</td>
+                                <td>{row.head_code}</td>
                                 <td>{row.head_name}</td>
                                 <td>{row.created_on}</td>
                                 <td>{row.created_by}</td>
@@ -577,12 +335,22 @@ const FeeheadsBar = () => {
                                 <td>{row.category_id}</td>
                                 <td>{row.daysheet_head}</td>
                                 <td className="icons">
-                                    <button title="Delete" className="icon-btn" onClick={() => handleViewClick(index)}>
+                                    <button 
+                                        title="Delete" 
+                                        className="icon-btn" 
+                                        onClick={() => handleDelete(row.tran_head_id)}
+                                        disabled={isLoading}
+                                    >
                                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M2.5 5.00033H4.16667M4.16667 5.00033H17.5M4.16667 5.00033V16.667C4.16667 17.109 4.34226 17.5329 4.65482 17.8455C4.96738 18.1581 5.39131 18.3337 5.83333 18.3337H14.1667C14.6087 18.3337 15.0326 18.1581 15.3452 17.8455C15.6577 17.5329 15.8333 17.109 15.8333 16.667V5.00033H4.16667ZM6.66667 5.00033V3.33366C6.66667 2.89163 6.84226 2.46771 7.15482 2.15515C7.46738 1.84259 7.89131 1.66699 8.33333 1.66699H11.6667C12.1087 1.66699 12.5326 1.84259 12.8452 2.15515C13.1577 2.46771 13.3333 2.89163 13.3333 3.33366V5.00033M8.33333 9.16699V14.167M11.6667 9.16699V14.167" stroke="#667085" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
                                         </svg>
                                     </button>
-                                    <button title="Edit" className="icon-btn" onClick={() => handleViewClick(index)}>
+                                    <button 
+                                        title="Edit" 
+                                        className="icon-btn" 
+                                        onClick={() => handleViewClick(row.tran_head_id)}
+                                        disabled={isLoading}
+                                    >
                                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g clip-path="url(#clip0_363_3927)">
                                                 <path d="M14.1665 2.49993C14.3854 2.28106 14.6452 2.10744 14.9312 1.98899C15.2171 1.87054 15.5236 1.80957 15.8332 1.80957C16.1427 1.80957 16.4492 1.87054 16.7352 1.98899C17.0211 2.10744 17.281 2.28106 17.4998 2.49993C17.7187 2.7188 17.8923 2.97863 18.0108 3.2646C18.1292 3.55057 18.1902 3.85706 18.1902 4.16659C18.1902 4.47612 18.1292 4.78262 18.0108 5.06859C17.8923 5.35455 17.7187 5.61439 17.4998 5.83326L6.24984 17.0833L1.6665 18.3333L2.9165 13.7499L14.1665 2.49993Z" stroke="#667085" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
@@ -594,7 +362,12 @@ const FeeheadsBar = () => {
                                             </defs>
                                         </svg>
                                     </button>
-                                    <button title="View" className="icon-btn" onClick={() => handleViewClick(index)}>
+                                    <button 
+                                        title="View" 
+                                        className="icon-btn" 
+                                        onClick={() => handleViewClick(row.tran_head_id)}
+                                        disabled={isLoading}
+                                    >
                                         <svg width="48" height="16" viewBox="0 0 48 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M14.8628 7.36301C15.0655 7.64701 15.1668 7.78967 15.1668 7.99967C15.1668 8.21034 15.0655 8.35234 14.8628 8.63634C13.9522 9.91367 11.6262 12.6663 8.50016 12.6663C5.3735 12.6663 3.04816 9.91301 2.1375 8.63634C1.93483 8.35234 1.8335 8.20967 1.8335 7.99967C1.8335 7.78901 1.93483 7.64701 2.1375 7.36301C3.04816 6.08567 5.37416 3.33301 8.50016 3.33301C11.6268 3.33301 13.9522 6.08634 14.8628 7.36301Z" stroke="#7B7B7B" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
                                             <path d="M10.5 8C10.5 7.46957 10.2893 6.96086 9.91421 6.58579C9.53914 6.21071 9.03043 6 8.5 6C7.96957 6 7.46086 6.21071 7.08579 6.58579C6.71071 6.96086 6.5 7.46957 6.5 8C6.5 8.53043 6.71071 9.03914 7.08579 9.41421C7.46086 9.78929 7.96957 10 8.5 10C9.03043 10 9.53914 9.78929 9.91421 9.41421C10.2893 9.03914 10.5 8.53043 10.5 8Z" stroke="#7B7B7B" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
@@ -612,42 +385,55 @@ const FeeheadsBar = () => {
                 <>
                     <div className="overlay"></div>
                     <div className="form-popup">
-                        <h3>{isEditMode ? "View" : "Add New Field"}</h3>
+                        <h3>{isEditMode ? "Edit Fee Head" : "Add New Fee Head"}</h3>
                         <button className="close-btn" onClick={handleCancel}>×</button>
-                        <form className="feeheads-form">
+                        <form className="feeheads-form" onSubmit={handleSubmit}>
                             {Object.keys(initialFormState)
                                 .slice(0, isMobile ? 5 : undefined)
                                 .map((field, index) => (
                                     <label key={index}>
-                                        {field.replace(/_/g, ' ').toUpperCase()}
+                                        {toCamelCase(field)}
                                         <input
-                                            type="text"
+                                            type={
+                                                field === 'created_on' ? 'date' :
+                                                ['tran_head_id', 'head_code', 'created_by', 'payment_head', 'scenaro_id', 
+                                                 'ob_scenaro_id', 'quick_payment_head', 'payment_data', 'category_id', 
+                                                 'daysheet_head'].includes(field) ? 'number' : 'text'
+                                            }
                                             name={field}
                                             value={formData[field]}
                                             onChange={handleChange}
-                                            placeholder={`Enter ${field.replace(/_/g, ' ').toUpperCase()}`}
+                                            placeholder={`Enter ${toCamelCase(field)}`}
+                                            disabled={isLoading || (field === 'tran_head_id' && isEditMode)} // Disable tran_head_id in edit mode
                                         />
                                     </label>
                                 ))}
+                            {error && <div className="error-message">{error}</div>}
                             <div className="form-buttons">
-                                {!isEditMode && (
-                                    <button type="button" onClick={handleCancel} className="cancel-btn">Cancel</button>
-                                )}
+                                <button 
+                                    type="button" 
+                                    onClick={handleCancel} 
+                                    className="cancel-btn"
+                                    disabled={isLoading}
+                                >
+                                    Cancel
+                                </button>
                                 {isEditMode && (
                                     <button
                                         type="button"
-                                        onClick={() => {
-                                            const updatedData = tableData.filter((_, idx) => idx !== editIndex);
-                                            setTableData(updatedData);
-                                            handleCancel();
-                                        }}
+                                        onClick={() => handleDelete(editId)}
                                         className="delete-btn"
+                                        disabled={isLoading}
                                     >
                                         Delete
                                     </button>
                                 )}
-                                <button type="button" onClick={handleAddField} className="add-btn">
-                                    {isEditMode ? "Edit" : "Add New Field"}
+                                <button 
+                                    type="submit" 
+                                    className="add-btn"
+                                    disabled={isLoading}
+                                >
+                                    {isLoading ? 'Processing...' : (isEditMode ? "Update" : "Add New Fee Head")}
                                 </button>
                             </div>
                         </form>
