@@ -3,19 +3,19 @@ import axios from 'axios';
 import './Screen1.css';
 
 const initialFormState = {
-    tran_head_id: '', 
-    head_code: '', 
+    tran_head_id: '',
+    head_code: '',
     head_name: '',
-    created_on: '', 
-    created_by: '', 
-    payment_head: '', 
-    scenaro_id: '',
-    ob_scenaro_id: '', 
-    quick_payment_head: '',
+    created_on: '',
+    created_by: '',
+    payment_heads: '',
+    scenario_id: '',
+    ob_paid_scenario_id: '',
+    quick_payment_heads: '',
     sub_head_code: '',
-    payment_data: '', 
-    category_id: '', 
-    daysheet_head: '', 
+    payment_data: '',
+    category_id: '',
+    daysheet_heads: '',
 };
 
 const toCamelCase = (str) => {
@@ -85,19 +85,19 @@ const FeeheadsBar = () => {
                 tran_head_id: Number(item.tran_head_id),
                 head_code: Number(item.head_code),
                 created_by: Number(item.created_by),
-                payment_head: Number(item.payment_head),
-                scenaro_id: Number(item.scenaro_id),
-                ob_scenaro_id: Number(item.ob_scenaro_id),
-                quick_payment_head: Number(item.quick_payment_head),
+                payment_heads: Number(item.payment_heads),
+                scenario_id: Number(item.scenario_id),
+                ob_paid_scenario_id: Number(item.ob_paid_scenario_id),
+                quick_payment_heads: Number(item.quick_payment_heads),
                 payment_data: Number(item.payment_data),
                 category_id: Number(item.category_id),
-                daysheet_head: Number(item.daysheet_head),
+                daysheet_heads: Number(item.daysheet_heads),
                 created_on: item.created_on ? new Date(item.created_on).toISOString().split('T')[0] : '',
             }));
             setTableData(formattedData);
             setError(null);
         } catch (err) {
-            setError('Failed to fetch fee heads');
+            setError('Failed to fetch');
             console.error(err);
         } finally {
             setIsLoading(false);
@@ -125,13 +125,13 @@ const FeeheadsBar = () => {
             'tran_head_id',
             'head_code',
             'created_by',
-            'payment_head',
-            'scenaro_id',
-            'ob_scenaro_id',
-            'quick_payment_head',
+            'payment_heads',
+            'scenario_id',
+            'ob_paid_scenario_id',
+            'quick_payment_heads',
             'payment_data',
             'category_id',
-            'daysheet_head',
+            'daysheet_heads',
         ];
         if (numericFields.includes(name)) {
             setFormData({ ...formData, [name]: value === '' ? 0 : Number(value) });
@@ -158,13 +158,13 @@ const FeeheadsBar = () => {
                     tran_head_id: Number(response.data.tran_head_id),
                     head_code: Number(response.data.head_code),
                     created_by: Number(response.data.created_by),
-                    payment_head: Number(response.data.payment_head),
-                    scenaro_id: Number(response.data.scenaro_id),
-                    ob_scenaro_id: Number(response.data.ob_scenaro_id),
-                    quick_payment_head: Number(response.data.quick_payment_head),
+                    payment_heads: Number(response.data.payment_heads),
+                    scenario_id: Number(response.data.scenario_id),
+                    ob_paid_scenario_id: Number(response.data.ob_paid_scenario_id),
+                    quick_payment_heads: Number(response.data.quick_payment_heads),
                     payment_data: Number(response.data.payment_data),
                     category_id: Number(response.data.category_id),
-                    daysheet_head: Number(response.data.daysheet_head),
+                    daysheet_heads: Number(response.data.daysheet_heads),
                     created_on: response.data.created_on ? new Date(response.data.created_on).toISOString().split('T')[0] : '',
                 };
                 setTableData(tableData.map(item => 
@@ -177,20 +177,20 @@ const FeeheadsBar = () => {
                     tran_head_id: Number(response.data.tran_head_id),
                     head_code: Number(response.data.head_code),
                     created_by: Number(response.data.created_by),
-                    payment_head: Number(response.data.payment_head),
-                    scenaro_id: Number(response.data.scenaro_id),
-                    ob_scenaro_id: Number(response.data.ob_scenaro_id),
-                    quick_payment_head: Number(response.data.quick_payment_head),
+                    payment_heads: Number(response.data.payment_heads),
+                    scenario_id: Number(response.data.scenario_id),
+                    ob_paid_scenario_id: Number(response.data.ob_paid_scenario_id),
+                    quick_payment_heads: Number(response.data.quick_payment_heads),
                     payment_data: Number(response.data.payment_data),
                     category_id: Number(response.data.category_id),
-                    daysheet_head: Number(response.data.daysheet_head),
+                    daysheet_heads: Number(response.data.daysheet_heads),
                     created_on: response.data.created_on ? new Date(response.data.created_on).toISOString().split('T')[0] : '',
                 };
                 setTableData([...tableData, newItem]);
             }
             handleCancel();
         } catch (err) {
-            setError(isEditMode ? 'Failed to update fee head' : 'Failed to create fee head');
+            setError(isEditMode ? 'Failed to update' : 'Failed to create');
             console.error(err);
         } finally {
             setIsLoading(false);
@@ -224,13 +224,13 @@ const FeeheadsBar = () => {
                 tran_head_id: Number(response.data.tran_head_id),
                 head_code: Number(response.data.head_code),
                 created_by: Number(response.data.created_by),
-                payment_head: Number(response.data.payment_head),
-                scenaro_id: Number(response.data.scenaro_id),
-                ob_scenaro_id: Number(response.data.ob_scenaro_id),
-                quick_payment_head: Number(response.data.quick_payment_head),
+                payment_heads: Number(response.data.payment_heads),
+                scenario_id: Number(response.data.scenario_id),
+                ob_paid_scenario_id: Number(response.data.ob_paid_scenario_id),
+                quick_payment_heads: Number(response.data.quick_payment_heads),
                 payment_data: Number(response.data.payment_data),
                 category_id: Number(response.data.category_id),
-                daysheet_head: Number(response.data.daysheet_head),
+                daysheet_heads: Number(response.data.daysheet_heads),
                 created_on: response.data.created_on ? new Date(response.data.created_on).toISOString().split('T')[0] : '',
             };
             setFormData(fetchedData);
@@ -306,14 +306,14 @@ const FeeheadsBar = () => {
                             <th>HEAD NAME</th>
                             <th>CREATED ON</th>
                             <th>CREATED BY</th>
-                            <th>PAYMENT HEAD</th>
-                            <th>SCENARO ID</th>
-                            <th>OB SCENARO ID</th>
-                            <th>QUICK PAYMENT HEAD</th>
+                            <th>PAYMENT HEADS</th>
+                            <th>SCENARIO ID</th>
+                            <th>OB PAID SCENARIO ID</th>
+                            <th>QUICK PAYMENT HEADS</th>
                             <th>SUB HEAD CODE</th>
                             <th>PAYMENT DATA</th>
                             <th>CATEGORY ID</th>
-                            <th>DAYSHEET HEAD</th>
+                            <th>DAYSHEET HEADS</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -326,14 +326,14 @@ const FeeheadsBar = () => {
                                 <td>{row.head_name}</td>
                                 <td>{row.created_on}</td>
                                 <td>{row.created_by}</td>
-                                <td>{row.payment_head}</td>
-                                <td>{row.scenaro_id}</td>
-                                <td>{row.ob_scenaro_id}</td>
-                                <td>{row.quick_payment_head}</td>
+                                <td>{row.payment_heads}</td>
+                                <td>{row.scenario_id}</td>
+                                <td>{row.ob_paid_scenario_id}</td>
+                                <td>{row.quick_payment_heads}</td>
                                 <td>{row.sub_head_code}</td>
                                 <td>{row.payment_data}</td>
                                 <td>{row.category_id}</td>
-                                <td>{row.daysheet_head}</td>
+                                <td>{row.daysheet_heads}</td>
                                 <td className="icons">
                                     <button 
                                         title="Delete" 
@@ -396,15 +396,15 @@ const FeeheadsBar = () => {
                                         <input
                                             type={
                                                 field === 'created_on' ? 'date' :
-                                                ['tran_head_id', 'head_code', 'created_by', 'payment_head', 'scenaro_id', 
-                                                 'ob_scenaro_id', 'quick_payment_head', 'payment_data', 'category_id', 
-                                                 'daysheet_head'].includes(field) ? 'number' : 'text'
+                                                ['tran_head_id', 'head_code', 'created_by', 'payment_heads', 'scenario_id', 
+                                                 'ob_paid_scenario_id', 'quick_payment_heads', 'payment_data', 'category_id', 
+                                                 'daysheet_heads'].includes(field) ? 'number' : 'text'
                                             }
                                             name={field}
                                             value={formData[field]}
                                             onChange={handleChange}
                                             placeholder={`Enter ${toCamelCase(field)}`}
-                                            disabled={isLoading || (field === 'tran_head_id' && isEditMode)} // Disable tran_head_id in edit mode
+                                            disabled={isLoading || (field === 'tran_head_id' && isEditMode)}
                                         />
                                     </label>
                                 ))}
